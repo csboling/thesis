@@ -3,7 +3,7 @@ I.   Motivation
      2. Organizational challenges of complex experiments
      3. Prior work and limitations
      4. Growing availability of web infrastructure
-     5. Summary of claims
+     5. Summary of goals
 
 II.  Background
      1. Project needs
@@ -18,9 +18,10 @@ II.  Background
      4. Lab automation software (advantages, limitations)
         i.   LabVIEW
         ii.
-
+		
 III. Architecture
-     1. Goals and requirements
+     1. Physical architecture
+	 1. Goals and requirements
         i.   automatic
         ii.  extensible
         iii. collaborative
@@ -53,7 +54,7 @@ IV.  Implementation
      5. User interface
         i.
 
-V.   Summary
+V.   Summary + claims
 
 
 
