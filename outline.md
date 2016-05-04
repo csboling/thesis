@@ -18,27 +18,27 @@ II.  Background
      4. Lab automation software (advantages, limitations)
         i.   LabVIEW
         ii.
-		
+
 III. Architecture
      1. Physical architecture
-	 1. Goals and requirements
+     2. Goals and requirements
         i.   automatic
         ii.  extensible
         iii. collaborative
         iv.  bespoke
         v.   provenance-aware
-     2. Service architecture
+     3. Service architecture
         i.   Network interface
         ii.  Endpoints
         iii. Example services
-     3. Data model
+     4. Data model
         i.   Entity document model
         ii.  Document provenance
         iii. Raw data linking
-     4. User experience
+     5. User experience
         i.   Document entry
         ii.  Graphical programming
-     5. Security
+     6. Security
 
 IV.  Implementation
      1. Service architecture

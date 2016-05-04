@@ -6,10 +6,6 @@ Laboratory Information Management System
 
 
 
-The complex needs of modern research have created several software
-markets, and there are now dozens of tools for computerizing various
-laboratory management and research tasks.
-
 \section{Requirements}
 
 \subsection{Data provenance}
@@ -20,7 +16,17 @@ relevant at the outset, forcing researchers to backtrack and repeat
 work in order to be confident in their results.
 
 
-\section{Workflow design software}
+
+
+
+
+\section{Review of existing experiment management software}
+
+The complex needs of modern research have created a large specialized
+software market, and there are now dozens of tools for computerizing
+various laboratory management and research tasks.
+
+\subsection{Workflow design tools}
 
 Taverna
 VisTrails
@@ -50,25 +56,43 @@ implementations are currently freely available. The extreme complexity
 of the model is also an impediment to adoption by end users as well as
 implementation.
 
-\section{Equipment automation tools}
+\subsection{Equipment automation tools}
 
-LabVIEW
 Zettajs
 
 It is desirable to include
 Unfortunately, relatively few LIMS vendors incorporate features for
 
-LabVIEW's G visual programming language arguably has much in common
-with some workflow editors,
+Likely the most visible software package providing this functionality
+is National Instruments LabVIEW \cite{ELLIOTT2007}
+LabVIEW's G visual programming language allows users to connect
+devices, signal processing blocks, and graphical interface elements,
+ultimately building a custom front panel and controller for a
+``virtual instrument'' which may communicate with many different
+pieces of lab equipment. LabVIEW interacts with National Instruments'
+line of data acquisition and control hardware and also ships with a
+large library of drivers for scientific instruments produced by many
+vendors.
 
-\section{LIMS}
+, and arguably has much in common
+with some workflow editors.
+
+At a lower price point, other software toolkits have capitalized on
+the recent emergence of affordable network-connected microcontrollers
+and single-board computers .
+ZettaJS, which intends to provide a hardware abstraction layer for
+controlling and coordinating embedded data acquisition platforms
+
+
+
+\subsection{LIMS}
 Some of these software packages provide a means of specifying
 experiment procedures and many of them integrate with an electronic
 lab notebook, but
 
 Many of these tools are essentially glorified Wiki packages
 
-\section{Electronic lab notebooks}
+\subsection{Electronic lab notebooks}
 
 An electronic lab notebook (ELN) is a software tool for helping
 researchers to chronicle their day-to-day investigations and
@@ -77,6 +101,15 @@ published \cite{Rubacha2011, }, but the domain is still evolving
 rapidly and many of these programs have begun to integrate
 capabilities for experiment specification and execution.
 
+Many general-purpose programming language environments targeted toward
+scientific computing include electronic lab notebook functionality.
+These tools are typically environments for literate programming
+\cite{Knuth:1984:LP:473.479} which are able to embed plots and data
+tables alongside code and natural language documentation. Popular
+solutions in this domain include Mathematica \cite{mathematica},
+R \cite{Rlang}, IPython/Jupyter \cite{IPython}, and
+MATLAB Notebook \cite{MATLAB}.
+
 Typically commercial products in this domain offer users compliance
 with the FDA's recommendation on electronic recordkeeping \cite{FDA}
 
@@ -84,11 +117,26 @@ In particular, Agilent's OpenLAB suite (formerly Kalabie) offers a
 notebook tool which combines data collection, storage, analysis, and
 collaboration capabilities. This package is also capable of
 integrating with data collected from instruments manufactured by
-Agilent and some of its business partners.
- still lacks modularity,
-user-customizability, version control
+Agilent and some of its business partners. The tool appears to provide
+many of the capabilities found in
+ still lacks modularity, user-customizability, version control
 
-Since many of these programs are proprietary,
+Since many of these programs are proprietary, it is difficult to
+compare
+
+
+
+\section{Rich publication data models}
+
+\subsection{Research objects}
+
+
+
+
+\section{Use case: Electrochemical sensor arrays}
+
+This experimental scenario will serve as a running example to
+demonstrate the capabilities of the software tool described by this thesis.
 
 
 

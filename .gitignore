@@ -1,9 +1,11 @@
 *~
+*.xml
 *.aux
 *.bbl
 *.blg
+*-blx.bib
 *.log
 *.out
 *.pdf
-
 Thumbs.db
+auto/

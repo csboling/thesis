@@ -1,3 +1,4 @@
+SHELL = sh
 TOPLEVEL = thesis
 TEXFILES = $(shell find . -name '*.tex')
 BIBFILES = $(shell find . -name '*.bib')
@@ -8,10 +9,12 @@ $(TOPLEVEL).aux: $(TEXFILES)
 	pdflatex $(TOPLEVEL).tex
 
 $(TOPLEVEL).bbl: references.bib $(TOPLEVEL).aux
-	bibtex $(TOPLEVEL)
+	bibtex8 --wolfgang $(TOPLEVEL)
 
 thesis.pdf: $(TOPLEVEL).bbl
 	pdflatex $(TOPLEVEL).tex
+	pdflatex $(TOPLEVEL).tex
+	bibtex8 --wolfgang $(TOPLEVEL)
 	pdflatex $(TOPLEVEL).tex
 
 clean:
