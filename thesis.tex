@@ -1,6 +1,24 @@
 \documentclass{report}
 
-\input{preamble}
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{subfiles}
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tensor}
+
+\usepackage{setspace}
+
+\usepackage{enumerate}
+\usepackage{pictexwd,dcpic}
+\usepackage{hyperref}
+
+\graphicspath{{images/}{./images}}
 
 \title{A provenance-aware collaborative software toolchain for
   automatic collection and comparative analysis of sensor
@@ -16,13 +34,19 @@
 
 \doublespacing
 
-\input{tex/abstract}
-\input{tex/motivation}
-\input{tex/background}
-\input{tex/architecture}
-\input{tex/implementation}
-\input{tex/summary}
+\subfile{tex/abstract}
+\subfile{tex/motivation}
+\subfile{tex/background}
+\subfile{tex/architecture}
+\subfile{tex/implementation}
+\subfile{tex/summary}
 
 \printbibliography
 
 \end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,8 +1,59 @@
+\documentclass[../thesis]{subfiles}
+
+\begin{document}
 \chapter{Background}
 
+This chapter explores the functional requirements of a software
+system for designing and executing complex experiments and organizing
+their results and justifies the need for a next-generation
+collaborative lab information management system. % We briefly describe
+% the electrochemical sensor research which produced our group's need
+% for the software, then
 
 
-Laboratory Information Management System
+
+\section{Use case: Electrochemical sensor arrays}
+
+Our development of a next-generation collaborative LIMS is motivated
+by a concrete research task, namely characterization and design of
+electrochemical sensor arrays for precise concentration estimation of
+a broad range of chemical targets \cite{Li2014, Wang2016,
+  Wang2014}. Electrochemical sensors are sensitive to a number of
+interacting environmental conditions such as temperature, humidity,
+ambient airflow, and presence of trace interferent chemicals. The
+sensitivity of a given sensor to a particular analyte compound is also
+a complex function of device geometry, electrolyte and substrate
+materials, and applied electrical stimulus. In order to make
+measurements meaningful, as much of this secondary information as
+possible must be collated with the raw electrical output of the
+sensors. Additionally, a typical characterization experiment involves
+a sequence of manipulations of controllable parameters such as the
+flow rates of input gases or applied voltage waveforms. The end
+engineering goal of these experiments is to determine the inverse
+function mapping each sensor's instantaneous output current, input
+voltage, and observable environmental parameters into a concentration
+profile of the device's chemical environment. For an experimental data
+set to afford such an analysis, the input conditions should be
+controlled as accurately as possible, and especially for batteries of
+tests involving many sensors operating in tandem it is necessary to
+employ computer control to achieve uniform results.
+
+This scenario will serve as a running example to demonstrate the
+capabilities and requirements of the software tool described by this
+thesis. Our ideal experimental setup involves commercial lab equipment
+as well as custom data acquisition hardware, simultaneous operation of
+many sensors with different physical characteristics, and precisely
+timed computer choreography of electrical interrogation protocols and
+gas flow rates. Furthermore, the exact nature of the experiments being
+run changes frequently as researchers identify new questions, design
+new sensors, and involve new equipment in their work,
+requiring our control and data management software to grow with the
+changing requirements of its users. We believe that a software
+framework capable of scheduling and autonomously executing experiments
+of this level of complexity has the potential to be more broadly
+useful in any scientific environment with similar workflow needs. The
+design goals of our software package are enumerated in the following section,
+followed by an overview of the existing tools which fill some of these needs.
 
 
 
@@ -17,9 +68,6 @@ work in order to be confident in their results.
 
 
 
-
-
-
 \section{Review of existing experiment management software}
 
 The complex needs of modern research have created a large specialized
@@ -28,8 +76,6 @@ various laboratory management and research tasks.
 
 \subsection{Workflow design tools}
 
-Taverna
-VisTrails
 ReproZip
 
 Defining, composing, and documenting complex procedures is a core
@@ -37,6 +83,10 @@ organizational need of many research groups. Workflow editors provide
 users with a means of constructing executable tasks by describing how
 data moves through them, typically by visually manipulating a directed
 graph of processes.
+
+Taverna
+
+VisTrails
 
 Industry groups have also made several attempts to produce a
 standardized data model for business processes and equipment, the
@@ -58,8 +108,6 @@ implementation.
 
 \subsection{Equipment automation tools}
 
-Zettajs
-
 It is desirable to include
 Unfortunately, relatively few LIMS vendors incorporate features for
 
@@ -77,12 +125,12 @@ vendors.
 , and arguably has much in common
 with some workflow editors.
 
-At a lower price point, other software toolkits have capitalized on
+Other software toolkits have begun to capitalize on
 the recent emergence of affordable network-connected microcontrollers
-and single-board computers .
-ZettaJS, which intends to provide a hardware abstraction layer for
-controlling and coordinating embedded data acquisition platforms
-
+and single-board computers.
+ZettaJS intends to provide a hardware abstraction layer for
+controlling and coordinating embedded data acquisition platforms over
+the web \cite{ZettaJS}.
 
 
 \subsection{LIMS}
@@ -133,10 +181,6 @@ compare
 
 
 
-\section{Use case: Electrochemical sensor arrays}
-
-This experimental scenario will serve as a running example to
-demonstrate the capabilities of the software tool described by this thesis.
 
 
 
@@ -148,3 +192,10 @@ collaboration have emerged in recent years. Moving toward an    will
 require the convergence of LIMS software with equipment automation .
 Many commercial LIMS are also inadequately flexible to researchers'
 rapidly changing data organization requirements
+
+\end{document}
+
+%%% Local Variables: ***
+%%% mode:latex ***
+%%% TeX-master: "../thesis.tex"  ***
+%%% End: ***
