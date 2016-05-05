@@ -9,12 +9,13 @@ $(TOPLEVEL).aux: $(TEXFILES)
 	pdflatex $(TOPLEVEL).tex
 
 $(TOPLEVEL).bbl: references.bib $(TOPLEVEL).aux
-	bibtex8 --wolfgang $(TOPLEVEL)
+	makeglossaries $(TOPLEVEL)
+	biber $(TOPLEVEL)
 
 thesis.pdf: $(TOPLEVEL).bbl
 	pdflatex $(TOPLEVEL).tex
 	pdflatex $(TOPLEVEL).tex
-	bibtex8 --wolfgang $(TOPLEVEL)
+	biber $(TOPLEVEL)
 	pdflatex $(TOPLEVEL).tex
 
 clean:

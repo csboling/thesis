@@ -1,6 +1,6 @@
-\documentclass{report}
+\documentclass{msumastersthesis}
 
-\usepackage[backend=bibtex]{biblatex}
+\usepackage[backend=biber]{biblatex}
 \usepackage{subfiles}
 \usepackage{graphicx}
 
@@ -17,8 +17,12 @@
 \usepackage{enumerate}
 \usepackage{pictexwd,dcpic}
 \usepackage{hyperref}
+\usepackage[toc,page]{appendix}
+\usepackage[toc,acronym]{glossaries}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
 
 \graphicspath{{images/}{./images}}
+\makeglossaries
 
 \title{A provenance-aware collaborative software toolchain for
   automatic collection and comparative analysis of sensor
@@ -27,21 +31,45 @@
 \author{Sam Boling\\Electrical and Computer Engineering\\Michigan State University}
 
 \addbibresource{references.bib}
+\subfile{glossary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
+\frontmatter
 \maketitle
-
-\doublespacing
-
 \subfile{tex/abstract}
+\TOC
+\newpage
+\pagenumbering{arabic}
+
+
+
+\mainmatter
+\begin{doublespace}
 \subfile{tex/motivation}
 \subfile{tex/background}
 \subfile{tex/architecture}
 \subfile{tex/implementation}
 \subfile{tex/summary}
+\end{doublespace}
 
-\printbibliography
+
+
+\backmatter
+% \appendices
+\begin{appendices}
+
+\chapter*{}
+\printglossaries
+\phantomsection
+
+\end{appendices}
+
+
+
+\printbibliography[heading=bibintoc]
 
 \end{document}
 

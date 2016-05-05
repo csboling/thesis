@@ -3,25 +3,27 @@
 \begin{document}
 \chapter{Background}
 
-This chapter explores the functional requirements of a software
+This chapter identifies the functional requirements of a software
 system for designing and executing complex experiments and organizing
 their results and justifies the need for a next-generation
-collaborative lab information management system. % We briefly describe
-% the electrochemical sensor research which produced our group's need
-% for the software, then
+collaborative lab information management system. We briefly describe
+the electrochemical sensor research which produced our group's need
+for the software, analyze the tooling requirements of our project, and
+then explore the existing ecosystem of software tools for automation
+of research tasks.
 
 
 
 \section{Use case: Electrochemical sensor arrays}
 
-Our development of a next-generation collaborative LIMS is motivated
+Our development of a next-generation collaborative \gls{LIMS} is motivated
 by a concrete research task, namely characterization and design of
 electrochemical sensor arrays for precise concentration estimation of
 a broad range of chemical targets \cite{Li2014, Wang2016,
   Wang2014}. Electrochemical sensors are sensitive to a number of
 interacting environmental conditions such as temperature, humidity,
-ambient airflow, and presence of trace interferent chemicals. The
-sensitivity of a given sensor to a particular analyte compound is also
+ambient airflow, and presence of trace interferent chemicals
+\cite{Marco2012}. The sensitivity of a given sensor to a particular analyte compound is also
 a complex function of device geometry, electrolyte and substrate
 materials, and applied electrical stimulus. In order to make
 measurements meaningful, as much of this secondary information as
@@ -57,7 +59,13 @@ followed by an overview of the existing tools which fill some of these needs.
 
 
 
-\section{Requirements}
+\section{Requirements and Terminology}
+
+
+
+\subsection{Collaboration}
+
+
 
 \subsection{Data provenance}
 In many cases, drawing conclusions about a data set relies on
@@ -68,77 +76,21 @@ work in order to be confident in their results.
 
 
 
+\subsection{User Compliance}
+
+
+
 \section{Review of existing experiment management software}
 
 The complex needs of modern research have created a large specialized
 software market, and there are now dozens of tools for computerizing
-various laboratory management and research tasks.
+various laboratory management and research tasks. There are now many
+companies offering lab informatics software
 
-\subsection{Workflow design tools}
-
-ReproZip
-
-Defining, composing, and documenting complex procedures is a core
-organizational need of many research groups. Workflow editors provide
-users with a means of constructing executable tasks by describing how
-data moves through them, typically by visually manipulating a directed
-graph of processes.
-
-Taverna
-
-VisTrails
-
-Industry groups have also made several attempts to produce a
-standardized data model for business processes and equipment, the
-most recent of which is ISO 15926 \cite{West2009}. This model promises
-a level of generality that is sufficient to enable interoperability
-between businesses in different sectors and countries and relying on
-large, varied sets of equipment and software. The still-growing
-specification encompasses information as diverse as process
-specification and refinement, structural description of organizations
-and devices, component lifecycle information and more. ISO 15926's
-representation format is based on semantic web technologies such as OWL, which
-employs a graph model to describe semantic relationships between
-entities, where each entity and relationship has an associated
-hyperlink. The standard has been under development for 25 years, but
-many specification documents have yet to be published and no software
-implementations are currently freely available. The extreme complexity
-of the model is also an impediment to adoption by end users as well as
-implementation.
-
-\subsection{Equipment automation tools}
-
-It is desirable to include
-Unfortunately, relatively few LIMS vendors incorporate features for
-
-Likely the most visible software package providing this functionality
-is National Instruments LabVIEW \cite{ELLIOTT2007}
-LabVIEW's G visual programming language allows users to connect
-devices, signal processing blocks, and graphical interface elements,
-ultimately building a custom front panel and controller for a
-``virtual instrument'' which may communicate with many different
-pieces of lab equipment. LabVIEW interacts with National Instruments'
-line of data acquisition and control hardware and also ships with a
-large library of drivers for scientific instruments produced by many
-vendors.
-
-, and arguably has much in common
-with some workflow editors.
-
-Other software toolkits have begun to capitalize on
-the recent emergence of affordable network-connected microcontrollers
-and single-board computers.
-ZettaJS intends to provide a hardware abstraction layer for
-controlling and coordinating embedded data acquisition platforms over
-the web \cite{ZettaJS}.
+Since many of these programs are proprietary, it is difficult to
+compare their feature sets precisely.
 
 
-\subsection{LIMS}
-Some of these software packages provide a means of specifying
-experiment procedures and many of them integrate with an electronic
-lab notebook, but
-
-Many of these tools are essentially glorified Wiki packages
 
 \subsection{Electronic lab notebooks}
 
@@ -161,16 +113,103 @@ MATLAB Notebook \cite{MATLAB}.
 Typically commercial products in this domain offer users compliance
 with the FDA's recommendation on electronic recordkeeping \cite{FDA}
 
+
+
+\subsection{\gls{LIMS}}
+A laboratory information management system (\gls{LIMS})
+
+Some of these software packages provide a means of specifying
+experiment procedures and many of them integrate with an electronic
+lab notebook, but
+
+A modern \gls{LIMS} provides a
+
+Many of these tools are essentially glorified Wiki packages
+
 In particular, Agilent's OpenLAB suite (formerly Kalabie) offers a
 notebook tool which combines data collection, storage, analysis, and
 collaboration capabilities. This package is also capable of
 integrating with data collected from instruments manufactured by
 Agilent and some of its business partners. The tool appears to provide
-many of the capabilities found in
+many of the capabilities found in a typical \gls{LIMS} combined with some
+support for real-time hardware control,
  still lacks modularity, user-customizability, version control
 
-Since many of these programs are proprietary, it is difficult to
-compare
+
+
+
+\subsection{Workflow design tools}
+
+Defining, composing, and documenting complex procedures is a core
+organizational need of many research groups. A number of so-called
+workflow management systems to help manage task schedules and
+dependencies in domains such as manufacturing \cite{}, high performance computing
+\cite{VisTrails}, and business management
+\cite{cardoso2004workflow}. Workflow editors provide users with a
+means of constructing executable tasks by describing how
+data moves through them, typically by visually manipulating a directed
+graph of processes. The most prominent examples of workflow software
+targeted toward scientists are built to facilitate the design and
+execution of high performance computing simulations such as Apache
+Taverna \cite{Taverna} and VisTrails \cite{VisTrails}. The application
+of similar software to managing business processes and software
+development suggests that these tools may also be valuable aids for
+describing complicated scientific experiments, and some \gls{LIMS} packages
+provide this functionality \cite{CoreLIMS}.
+
+A related class of software reproducibility tools uses virtual
+machines to produce self-contained computing environments. A notable
+example is \cite{ReproZip},
+
+Industry groups have also made several attempts to produce a
+standardized data model for business processes and equipment, the
+most recent of which is ISO 15926 \cite{West2009}. This model promises
+a level of generality that is sufficient to enable interoperability
+between businesses in different sectors and countries and relying on
+large, varied sets of equipment and software. The still-growing
+specification encompasses information as diverse as process
+specification and refinement, structural description of organizations
+and devices, component lifecycle information and more. ISO 15926's
+representation format is based on semantic web technologies such as OWL, which
+employs a graph model to describe semantic relationships between
+entities, where each entity and relationship has an associated
+hyperlink. The standard has been under development for 25 years, but
+many specification documents have yet to be published and no software
+implementations are currently freely available. The extreme complexity
+of the model is also an impediment to adoption by end users as well as
+implementation.
+
+
+
+\subsection{Equipment automation tools}
+
+To extend automation of scientific processes beyond the purely
+computational domain, several vendors offer tools for coordinating
+simultaneous operation of actuators and data acquisition modules.
+Likely the most visible software package providing this functionality
+is National Instruments LabVIEW \cite{ELLIOTT2007}
+LabVIEW's G visual programming language allows users to connect
+devices, signal processing blocks, and graphical interface elements,
+ultimately building a custom front panel and controller for a
+``virtual instrument'' which may communicate with many different
+pieces of lab equipment. LabVIEW interacts with National Instruments'
+line of data acquisition and control hardware and also ships with a
+large library of drivers for scientific instruments produced by many
+vendors.
+
+, and arguably has much in common
+with some workflow editors.
+
+Other software toolkits have begun to capitalize on
+the recent emergence of affordable network-connected microcontrollers
+and single-board computers.
+ZettaJS intends to provide a hardware abstraction layer for
+controlling and coordinating embedded data acquisition platforms over
+the web \cite{ZettaJS}.
+
+
+Unfortunately, relatively few \gls{LIMS} vendors incorporate equipment
+automation into their feature sets.
 
 
 
@@ -189,8 +228,8 @@ compare
 A number of software tools for automating data collection, analyzing
 and comparing data sets, and interdisciplinary scientific
 collaboration have emerged in recent years. Moving toward an    will
-require the convergence of LIMS software with equipment automation .
-Many commercial LIMS are also inadequately flexible to researchers'
+require the convergence of \gls{LIMS} software with equipment automation .
+Many commercial \gls{LIMS} are also inadequately flexible to researchers'
 rapidly changing data organization requirements
 
 \end{document}
