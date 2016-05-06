@@ -1,16 +1,23 @@
 \documentclass[../thesis]{subfiles}
-
 \begin{document}
+
 \chapter{Background}
 
-This chapter identifies the functional requirements of a software
-system for designing and executing complex experiments and organizing
-their results and justifies the need for a next-generation
+A growing body of work in the field of meta-research has identified a
+number of obstructions to research reproducibility and possible
+techniques for improving the trustworthiness of scientific
+publications. One promising approach for addressing some of these
+factors is the widespread adoption of standardized procedures for
+experiment design, record keeping, and publication, supported wherever
+possible by software tools for automation and research lifecycle
+management. This chapter identifies the functional requirements of a
+software system for designing and executing complex experiments and
+organizing their results and justifies the need for a next-generation
 collaborative lab information management system. We briefly describe
 the electrochemical sensor research which produced our group's need
 for the software, analyze the tooling requirements of our project, and
 then explore the existing ecosystem of software tools for automation
-of research tasks.
+and curation of research.
 
 
 
@@ -40,7 +47,9 @@ controlled as accurately as possible, and especially for batteries of
 tests involving many sensors operating in tandem it is necessary to
 employ computer control to achieve uniform results.
 
-This scenario will serve as a running example to demonstrate the
+This experimental scenario, depicted schematically in figure
+\ref{fig:EchemUseCase},
+will serve as a running example to demonstrate the
 capabilities and requirements of the software tool described by this
 thesis. Our ideal experimental setup involves commercial lab equipment
 as well as custom data acquisition hardware, simultaneous operation of
@@ -50,16 +59,38 @@ gas flow rates. Furthermore, the exact nature of the experiments being
 run changes frequently as researchers identify new questions, design
 new sensors, and involve new equipment in their work,
 requiring our control and data management software to grow with the
-changing requirements of its users. We believe that a software
-framework capable of scheduling and autonomously executing experiments
-of this level of complexity has the potential to be more broadly
-useful in any scientific environment with similar workflow needs. The
-design goals of our software package are enumerated in the following section,
-followed by an overview of the existing tools which fill some of these needs.
+changing requirements of its users.
 
+We believe that a software framework capable of scheduling and
+autonomously executing experiments of this level of complexity has the
+potential to be more broadly useful in any scientific environment with
+similar workflow needs.
+The design goals of our software package are enumerated in the
+following section, followed by an overview of the existing tools which
+fulfill some of these requirements.
+
+\begin{figure}
+  \caption{Example experimental apparatus for characterizing an array
+    of electrochemical gas sensors. \label{fig:EchemUseCase}}
+\end{figure}
 
 
 \section{Requirements and Terminology}
+
+
+\subsection{Automation}
+A primary motivator
+
+\subsection{Metadata and data provenance}
+In many cases, drawing conclusions about a data set relies on
+metadata and information about experimental conditions that is
+difficult to acquire for every trial and is not obviously
+relevant at the outset, forcing researchers to backtrack and repeat
+work in order to be confident in their results. Examples of
+metadata which are often omitted from raw data sets include
+measurement units, input conditions, sample and equipment IDs, and
+annotations such as the hypothesis of an experiment or where to find
+more information.
 
 
 
@@ -67,16 +98,14 @@ followed by an overview of the existing tools which fill some of these needs.
 
 
 
-\subsection{Data provenance}
-In many cases, drawing conclusions about a data set relies on
-metadata and information about experimental conditions that is
-difficult to acquire for every trial and is not obviously
-relevant at the outset, forcing researchers to backtrack and repeat
-work in order to be confident in their results.
-
-
-
 \subsection{User Compliance}
+A known challenge faced when developing software for reproducible research
+is that feature-rich tools often present users with a substantial
+learning curve, deterring widespread adoption.
+
+
+
+\subsection{Extensibility}
 
 
 
@@ -85,7 +114,8 @@ work in order to be confident in their results.
 The complex needs of modern research have created a large specialized
 software market, and there are now dozens of tools for computerizing
 various laboratory management and research tasks. There are now many
-companies offering lab informatics software
+companies offering lab informatics software with a broad range of
+capabilities,
 
 Since many of these programs are proprietary, it is difficult to
 compare their feature sets precisely.
@@ -94,7 +124,7 @@ compare their feature sets precisely.
 
 \subsection{Electronic lab notebooks}
 
-An electronic lab notebook (ELN) is a software tool for helping
+An \gls{ELN} is a software tool for helping
 researchers to chronicle their day-to-day investigations and
 results. Several surveys of commercially available ELNs have been
 published \cite{Rubacha2011, }, but the domain is still evolving
@@ -142,30 +172,55 @@ support for real-time hardware control,
 
 Defining, composing, and documenting complex procedures is a core
 organizational need of many research groups. A number of so-called
-workflow management systems to help manage task schedules and
-dependencies in domains such as manufacturing \cite{}, high performance computing
+\glspl{workflowMgmt} have emerged to help manage task schedules and
+dependencies in domains such as manufacturing
+\cite{Allweyer:2010:BPM:1841147}, high performance computing
 \cite{VisTrails}, and business management
 \cite{cardoso2004workflow}. Workflow editors provide users with a
 means of constructing executable tasks by describing how
 data moves through them, typically by visually manipulating a directed
-graph of processes. The most prominent examples of workflow software
+graph of processes. In some cases workflows may serve purely as
+documentation, while workflow tools for \gls{insilico} science
+are often executable and may be bundled with data to provide direct
+replication of analysis flows on other machines. The most prominent
+examples of workflow software
 targeted toward scientists are built to facilitate the design and
 execution of high performance computing simulations such as Apache
-Taverna \cite{Taverna} and VisTrails \cite{VisTrails}. The application
+Taverna \cite{Taverna} and VisTrails \cite{VisTrails}. Less
+attention has paid to scientific processes that are not completely digital
+and are therefore harder to fully automate. The application
 of similar software to managing business processes and software
 development suggests that these tools may also be valuable aids for
 describing complicated scientific experiments, and some \gls{LIMS} packages
-provide this functionality \cite{CoreLIMS}.
+provide some of this functionality \cite{CoreLIMS}. By combining these
+workflow specification tools with software for controlling lab
+equipment, it may be possible to provide domain scientists with a
+powerful framework for defining executable specifications of
+complicated laboratory procedures.
 
-A related class of software reproducibility tools uses virtual
-machines to produce self-contained computing environments. A notable
-example is \cite{ReproZip},
+A related class of software reproducibility tools encourages users to
+bundle input sets and sequences of data-transforming programs into a
+single distributable file intended to accompany published results.
+A notable example is \cite{ReproZip}, which uses virtual machines to
+produce self-contained computing environments for reproducing digital
+analysis under identical conditions on different physical
+computers. ReproZip automatically determines all the files necessary
+for replicating an \gls{insilico} workflow by monitoring the operating
+system during ordinary task execution. These techniques offer a
+promising strategy for improving scientists' ability to capture the
+intricacies of their work for later review or reuse while avoiding
+excessive demands on the user's discipline.
 
-Industry groups have also made several attempts to produce a
-standardized data model for business processes and equipment, the
-most recent of which is ISO 15926 \cite{West2009}. This model promises
+Industry groups have also made several attempts to produce
+standardized data models for business processes and equipment, perhaps
+the most popular of which is \gls{BPMN}
+\cite{Allweyer:2010:BPM:1841147}, typically represented by a directed
+graph or flowchart much like the data models used in scientific
+workflow software. The
+most full-featured model expanding on this concept is ISO 15926
+\cite{West2009}. This model promises
 a level of generality that is sufficient to enable interoperability
-between businesses in different sectors and countries and relying on
+between businesses in different sectors and countries which rely on
 large, varied sets of equipment and software. The still-growing
 specification encompasses information as diverse as process
 specification and refinement, structural description of organizations
