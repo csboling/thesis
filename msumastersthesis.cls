@@ -88,7 +88,7 @@
 	\vspace{\baselineskip}%
 	{\number\year}
 	}
-	\vspace{\baselineskip}
+	% \vspace{\baselineskip}
 	\end{center}
 \end{titlepage}}%
 
