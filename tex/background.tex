@@ -9,7 +9,7 @@ techniques for improving the trustworthiness of scientific
 publications. One promising approach for addressing some of these
 factors is the widespread adoption of standardized procedures for
 experiment design, record keeping, and publication, supported wherever
-possible by software tools for automation and research lifecycle
+possible by software tools for automation and research life cycle
 management. This chapter identifies the functional requirements of a
 software system for designing and executing complex experiments and
 organizing their results and justifies the need for a next-generation
@@ -64,7 +64,10 @@ changing requirements of its users.
 We believe that a software framework capable of scheduling and
 autonomously executing experiments of this level of complexity has the
 potential to be more broadly useful in any scientific environment with
-similar workflow needs.
+similar workflow needs. By generalizing our design from this use case,
+we hope to meet our project's needs and simultaneously provide the
+research community with powerful, much-needed open-source solutions
+for a set of problems that recur in many different scientific areas.
 The design goals of our software package are enumerated in the
 following section, followed by an overview of the existing tools which
 fulfill some of these requirements.
@@ -81,7 +84,12 @@ fulfill some of these requirements.
 
 \section{Requirements and Terminology}
 Laboratory science presents a diverse set of operations management and
-informatics challenges, and
+informatics challenges, and many research reproducibility efforts stand to
+benefit from carefully designed software tools. In this section we
+consider some of the many scalability challenges faced by a typical
+research group and examine some proposed techniques for addressing
+them. This discussion has guided the design of the software framework
+presented later in this thesis.
 
 \subsection{Automation}
 The desire to scale experiments to much higher throughput provides a
@@ -94,19 +102,39 @@ processing experts require accurate information about the timing of
 input and output events, and adequate resolution of control events is
 extremely difficult to obtain under manual operation.
 
-\subsection{Metadata and data provenance}
-A major difficulty with ad-hoc data collection is enforcing consistent
-data collection and management practices
+By employing computer control of actuators and data collection
+equipment whenever possible, researchers should be able to maximize
+the consistency of their results while simultaneously
+improving their productivity. The ability to automatically re-run a
+task with modified parameters overnight rather than carefully
+manipulating control dials for hours on end would allow scientists
+to focus their expertise on identifying new research questions rather
+than on tedious and meticulous experiment execution.
+An ideal software tool for lab automation should allow investigators
+to design, refine, and compose executable tasks, enabling researchers
+to build complex experimental protocols from a library of reusable
+components.
 
-In many cases, drawing conclusions about a data set relies on
-metadata and information about experimental conditions that is
-difficult to acquire for every trial and is not obviously
-relevant at the outset, forcing researchers to backtrack and repeat
-work in order to be confident in their results. Examples of
+\subsection{Metadata and data provenance}
+Much of the data that is collected and exchanged by researchers is
+stored in ad-hoc file formats, often detached from the relevant
+metadata necessary to make these results meaningful. Examples of
 metadata which are often omitted from raw data sets include
 measurement units, input conditions, sample and equipment IDs, and
 annotations such as the hypothesis of an experiment or where to find
-more information.
+further documentation or references. These key pieces of information
+are often recorded or remembered only by the original experimenter and
+may easily become unavailable to future researchers.
+Even when data collection and management policies are established within
+a group, it requires careful discipline to enforce these
+rules manually, especially in a typical fast-paced research
+environment with little direct oversight.
+
+Furthermore, in many cases drawing conclusions about a data set relies on
+information about experimental conditions that is
+difficult to acquire for every trial and is not obviously
+relevant at the outset, forcing researchers to backtrack and repeat
+work in order to be confident in their results.
 
 \gls{dataProvenance}
 
@@ -115,7 +143,15 @@ data set, understand how it was created, and determine where and how
 modifications or errors were introduced.
 
 \subsection{Version control}
-
+. Similar in concept to \gls{dataProvenance}, a \gls{VCS}
+keeps checkpoints of important points in a file's edit history,
+allowing authors to review past states, recover lost work, and make
+changes to a single file rather than attempting to manually keep track
+of backups. Version control tools are indispensable in the software
+industry for tracking source code, where popular tools include Git
+\cite{Git} and Subversion \cite{Subversion}, but some version control features are
+now commonplace in office programs such as Microsoft Word's ``Track
+Changes'' mode \cite{Word}.
 
 \subsection{Collaboration}
 Modern research labs are increasingly interdisciplinary
@@ -157,44 +193,27 @@ compare their feature sets precisely.
 
 An \gls{ELN} is a software tool for helping
 researchers to chronicle their day-to-day investigations and
-results. Several surveys of commercially available ELNs have been
-published \cite{Rubacha2011, }, but the domain is still evolving
-rapidly and many of these programs have begun to integrate
-capabilities for experiment specification and execution.
+results. A typical \gls{ELN} package allows researchers to compose
+rich-text documents consisting of text and figures alongside technical
+artifacts such as data tables. Several surveys of
+commercially available ELNs have been published
+\cite{Rubacha2011, Dirnagl2016}, but the domain is still evolving
+rapidly and some of these programs have begun to integrate complex
+capabilities such as version control, experiment specification, and
+more. Many of the commercial products in this domain
+offer users compliance with the FDA's recommendation on electronic
+record keeping \cite{FDA}, a set of guidelines promoting thorough,
+auditable documentation of research performed in the agricultural and
+health sectors.
 
-Many general-purpose programming language environments targeted toward
-scientific computing include electronic lab notebook functionality.
-These tools are typically environments for literate programming
-\cite{Knuth:1984:LP:473.479} which are able to embed plots and data
-tables alongside code and natural language documentation. Popular
-solutions in this domain include Mathematica \cite{mathematica},
-R \cite{Rlang}, IPython/Jupyter \cite{IPython}, and
-MATLAB Notebook \cite{MATLAB}.
-
-Typically commercial products in this domain offer users compliance
-with the FDA's recommendation on electronic recordkeeping \cite{FDA}
-
-
-
-\subsection{\Gls{LIMS}}
-A laboratory information management system (\gls{LIMS})
-
-Some of these software packages provide a means of specifying
-experiment procedures and many of them integrate with an electronic
-lab notebook, but
-
-A modern \gls{LIMS} provides a
-
-Many of these tools are essentially glorified Wiki packages
-
-In particular, Agilent's OpenLAB suite (formerly Kalabie) offers a
-notebook tool which combines data collection, storage, analysis, and
-collaboration capabilities. This package is also capable of
-integrating with data collected from instruments manufactured by
-Agilent and some of its business partners. The tool appears to provide
-many of the capabilities found in a typical \gls{LIMS} combined with some
-support for real-time hardware control,
- still lacks modularity, user-customizability, version control
+Most general-purpose programming language environments targeted toward
+scientific computing now include some degree of ELN
+functionality. These tools are typically environments for literate
+programming \cite{Knuth:1984:LP:473.479} which are able to embed plots
+and data tables alongside code and natural language
+documentation. Popular solutions in this domain include Mathematica
+\cite{mathematica}, R \cite{Rlang}, IPython/Jupyter \cite{IPython},
+and MATLAB Notebook \cite{MATLAB}.
 
 
 
@@ -255,7 +274,7 @@ between businesses in different sectors and countries which rely on
 large, varied sets of equipment and software. The still-growing
 specification encompasses information as diverse as process
 specification and refinement, structural description of organizations
-and devices, component lifecycle information and more. ISO 15926's
+and devices, component life cycle information and more. ISO 15926's
 representation format is based on semantic web technologies such as OWL, which
 employs a graph model to describe semantic relationships between
 entities, where each entity and relationship has an associated
@@ -264,6 +283,44 @@ many specification documents have yet to be published and no software
 implementations are currently freely available. The extreme complexity
 of the model is also an impediment to adoption by end users as well as
 implementation.
+
+
+
+\subsection{\Gls{LIMS}}
+A \gls{LIMS} is a tool for tracking the operations and assets
+of a laboratory. Commercial tools by this name provide a wide range
+of features targeted toward different aspects of an enterprise-level
+industrial lab such as letting researchers monitor their ongoing
+experiments, logging samples and data sets, and notifying relevant
+personnel when maintenance tasks like restocking need their
+attention. This field is now occupied by a staggering number of
+application vendors and products with a broad range of
+specializations, feature sets, maturity levels, and price tags
+\cite{LIMSWikiList}. These packages range from glorified
+wiki/spreadsheet tools to specialized systems for interacting with
+specific types of chemical analysis equipment.
+Some \gls{LIMS} packages provide a \gls{workflowMgmt}
+and many of them contain built-in \gls{ELN}s.
+
+The primary players in this application domain target the needs of
+labs in the healthcare, forensics, and pharmaceutical sectors and are
+mostly designed for managing and optimizing huge batch processes on
+fixed, well-defined equipment pipelines. The designs resulting from
+these assumptions would seem to make many of these programs a poor fit
+for the rapidly evolving experimental workflow seen in academic sensor
+engineering, though there are exceptions.
+In particular, Agilent's OpenLAB suite (formerly Kalabie)
+\cite{OpenLAB} offers a notebook tool which combines data collection,
+storage, analysis, and collaboration capabilities. This package is
+also capable of integrating with data collected from instruments
+manufactured by Agilent and some of its business partners. The tool
+appears to provide many of the capabilities found in a typical
+\gls{LIMS} combined with some support for real-time hardware control,
+making it an attractive candidate for meeting several of our
+application's needs. Unfortunately, this tool is restricted to a
+specific set of associated hardware and at the time of this writing
+lacks desirable features such as modularity, user-customizability, and
+version control.
 
 
 
@@ -277,22 +334,23 @@ is National Instruments LabVIEW \cite{ELLIOTT2007}
 LabVIEW's G visual programming language allows users to connect
 devices, signal processing blocks, and graphical interface elements,
 ultimately building a custom front panel and controller for a
-``virtual instrument'' which may communicate with many different
+``virtual instrument'' (VI) which may communicate with many different
 pieces of lab equipment. LabVIEW interacts with National Instruments'
 line of data acquisition and control hardware and also ships with a
 large library of drivers for scientific instruments produced by many
-vendors.
-
-, and arguably has much in common
-with some workflow editors.
+vendors. G programs can be regarded to some degree as workflow-style
+executable process specifications, but different versions of LabVIEW
+have well-documented compatibility problems, preventing VIs from
+serving as self-contained process dissemination units.
 
 Other software toolkits have begun to capitalize on
 the recent emergence of affordable network-connected microcontrollers
-and single-board computers.
-ZettaJS intends to provide a hardware abstraction layer for
-controlling and coordinating embedded data acquisition platforms over
-the web \cite{ZettaJS}, with the stated goal of connecting devices to
-the \gls{IoTg} using existing web technologies.
+and single-board computers. One toolkit overlapping with some
+of our application requirements, ZettaJS, intends to provide a
+hardware abstraction layer for controlling and coordinating embedded
+data acquisition platforms over the web \cite{ZettaJS}, with the
+stated goal of connecting devices to the \gls{IoTg} using existing web
+technologies.
 
 
 Unfortunately, relatively few \gls{LIMS} vendors incorporate equipment
