@@ -41,10 +41,8 @@
 \maketitlepage
 \subfile{tex/abstract}
 \TOC
-\newpage
-\pagenumbering{arabic}
-
-
+\subfile{tex/acknowledgments}
+\subfile{tex/source}
 
 \mainmatter
 \begin{doublespace}
@@ -57,18 +55,12 @@
 
 
 
+% \appendix
+% \begin{appendices}
+% \end{appendices}
+
 \backmatter
-% \appendices
-\begin{appendices}
-
-\chapter*{}
 \printglossaries
-\phantomsection
-
-\end{appendices}
-
-
-
 \printbibliography[heading=bibintoc]
 
 \end{document}

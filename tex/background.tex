@@ -70,18 +70,34 @@ following section, followed by an overview of the existing tools which
 fulfill some of these requirements.
 
 \begin{figure}
-  \caption{Example experimental apparatus for characterizing an array
-    of electrochemical gas sensors. \label{fig:EchemUseCase}}
+  \caption{
+    Schematic of an example experimental apparatus for
+    characterizing an array of electrochemical gas sensors.
+    \label{fig:EchemUseCase}
+  }
 \end{figure}
 
 
-\section{Requirements and Terminology}
 
+\section{Requirements and Terminology}
+Laboratory science presents a diverse set of operations management and
+informatics challenges, and
 
 \subsection{Automation}
-A primary motivator
+The desire to scale experiments to much higher throughput provides a
+major motivation for exploring software solutions for lab management.
+As researchers begin to work with many devices and control
+parameters simultaneously, data collection and tracking tasks become
+difficult to manage. Additionally, when attempting to provide
+confident analyses of large sensor characterization data sets, signal
+processing experts require accurate information about the timing of
+input and output events, and adequate resolution of control events is
+extremely difficult to obtain under manual operation.
 
 \subsection{Metadata and data provenance}
+A major difficulty with ad-hoc data collection is enforcing consistent
+data collection and management practices
+
 In many cases, drawing conclusions about a data set relies on
 metadata and information about experimental conditions that is
 difficult to acquire for every trial and is not obviously
@@ -92,21 +108,36 @@ measurement units, input conditions, sample and equipment IDs, and
 annotations such as the hypothesis of an experiment or where to find
 more information.
 
+\gls{dataProvenance}
+
+Provenance techniques aim to allow researchers to properly attribute a
+data set, understand how it was created, and determine where and how
+modifications or errors were introduced.
+
+\subsection{Version control}
 
 
 \subsection{Collaboration}
+Modern research labs are increasingly interdisciplinary
 
-
-
-\subsection{User Compliance}
+\subsection{User compliance}
 A known challenge faced when developing software for reproducible research
 is that feature-rich tools often present users with a substantial
 learning curve, deterring widespread adoption.
 
-
-
 \subsection{Extensibility}
+A common user complaint about  overly rigid and ill-suited for
+adapting to the rapidly changing needs of scientific users \cite{},
+providing one possible reason for the proliferation of software
+packages with slightly different goals and feature sets. To address
+this problem, we feel that researchers should be allowed and
+encouraged to customize and modify their lab management software to
+meet their needs. Open-source projects are theoretically arbitrarily
+extensible, since users may directly modify the software, but in many
+cases open source tools are still not designed with customization in
+mind.
 
+\subsection{Security}
 
 
 \section{Review of existing experiment management \mbox{software}}
