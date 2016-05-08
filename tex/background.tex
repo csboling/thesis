@@ -23,29 +23,30 @@ and curation of research.
 
 \section{Use case: Electrochemical sensor arrays}
 
-Our development of a next-generation collaborative \gls{LIMS} is motivated
-by a concrete research task, namely characterization and design of
-electrochemical sensor arrays for precise concentration estimation of
-a broad range of chemical targets \cite{Li2014, Wang2016,
-  Wang2014}. Electrochemical sensors are sensitive to a number of
-interacting environmental conditions such as temperature, humidity,
-ambient airflow, and presence of trace interferent chemicals
-\cite{Marco2012}. The sensitivity of a given sensor to a particular analyte compound is also
-a complex function of device geometry, electrolyte and substrate
-materials, and applied electrical stimulus. In order to make
-measurements meaningful, as much of this secondary information as
-possible must be collated with the raw electrical output of the
-sensors. Additionally, a typical characterization experiment involves
-a sequence of manipulations of controllable parameters such as the
-flow rates of input gases or applied voltage waveforms. The end
-engineering goal of these experiments is to determine the inverse
-function mapping each sensor's instantaneous output current, input
-voltage, and observable environmental parameters into a concentration
-profile of the device's chemical environment. For an experimental data
-set to afford such an analysis, the input conditions should be
-controlled as accurately as possible, and especially for batteries of
-tests involving many sensors operating in tandem it is necessary to
-employ computer control to achieve uniform results.
+Our development of a next-generation collaborative \gls{LIMS} is
+motivated by a concrete research task, namely characterization and
+design of electrochemical sensor arrays for precise concentration
+estimation of a broad range of chemical targets \cite{Li2014,
+  Wang2016, Wang2014}. Electrochemical sensors are sensitive to a
+number of interacting environmental conditions such as temperature,
+humidity, ambient airflow, and presence of trace interferent chemicals
+\cite{Marco2012}. The sensitivity of a given sensor to a particular
+analyte compound is also a complex function of device geometry,
+electrolyte and substrate materials, and applied electrical
+stimulus. In order to make measurements meaningful, as much of this
+secondary information as possible must be collated with the raw
+electrical output of the sensors. Additionally, a typical
+characterization experiment involves a sequence of manipulations of
+controllable parameters such as the flow rates of input gases or
+applied voltage waveforms. The end engineering goal of these
+experiments is to determine the inverse function mapping each sensor's
+instantaneous output current, input voltage, and observable
+environmental parameters into a concentration profile of the device's
+chemical environment. For an experimental data set to afford such an
+analysis, the input conditions should be controlled as accurately as
+possible, and especially for batteries of tests involving many sensors
+operating in tandem it is necessary to employ computer control to
+achieve uniform results.
 
 This experimental scenario, depicted schematically in figure
 \ref{fig:EchemUseCase},
@@ -134,16 +135,28 @@ Furthermore, in many cases drawing conclusions about a data set relies on
 information about experimental conditions that is
 difficult to acquire for every trial and is not obviously
 relevant at the outset, forcing researchers to backtrack and repeat
-work in order to be confident in their results.
+work in order to be confident in their results. By using software to
+collect and manage information about the flow of data through an
+experiment, users can be provided with powerful tools for examining
+their workflows at many levels of detail without requiring costly and
+time-consuming repeat trials.
 
-\gls{dataProvenance}
-
+Systematically tracking and organizing the history of data sets as
+they are collected, reformatted, and undergo transformations and
+analysis is the focus of the growing area of \gls{dataProvenance} \cite{buneman2000data}.
 Provenance techniques aim to allow researchers to properly attribute a
 data set, understand how it was created, and determine where and how
-modifications or errors were introduced.
+modifications or errors were introduced. Capturing and serializing
+accurate and sufficient provenance information about a system remains
+a research topic of its own \cite{Cheney:2009:PFH:1639950.1640064},
+but a number of existing scientific software tools provide some
+features that cater to this need.
 
 \subsection{Version control}
-. Similar in concept to \gls{dataProvenance}, a \gls{VCS}
+Whenever software provides the ability to create and modify complex
+documents or \glspl{artifact}, version control
+is a valuable feature for improving productivity and
+auditability. Similar in concept to \gls{dataProvenance}, a \gls{VCS}
 keeps checkpoints of important points in a file's edit history,
 allowing authors to review past states, recover lost work, and make
 changes to a single file rather than attempting to manually keep track
@@ -151,30 +164,76 @@ of backups. Version control tools are indispensable in the software
 industry for tracking source code, where popular tools include Git
 \cite{Git} and Subversion \cite{Subversion}, but some version control features are
 now commonplace in office programs such as Microsoft Word's ``Track
-Changes'' mode \cite{Word}.
+Changes'' mode \cite{Word}. Existing version control software for plain
+text files is extremely mature, full-featured, and powerful, and may
+be used as a third-party tool for any work where plain text code and
+configuration files are \glspl{artifact} of interest.
 
 \subsection{Collaboration}
-Modern research labs are increasingly interdisciplinary
-
-\subsection{User compliance}
-A known challenge faced when developing software for reproducible research
-is that feature-rich tools often present users with a substantial
-learning curve, deterring widespread adoption.
+Modern research labs are increasingly interdisciplinary and rely on
+remote sharing of techniques, data, and publications. Software
+designed for assisting researchers with performing and documenting
+their work should reflect these realities, ideally offering native
+support for sharing and collaboratively reviewing resources over the
+Internet. Software systems with distribution in mind are also well
+equipped to enforce policies about data usage and to maintain
+end-to-end provenance information about \glspl{artifact} by managing records
+in a server-side database. Furthermore, the use of electronic media
+enables users to assemble information-rich dissemination units, and
+software which supports portable and information-dense file formats
+provides benefits for long-term collaboration as well as publication.
 
 \subsection{Extensibility}
-A common user complaint about  overly rigid and ill-suited for
-adapting to the rapidly changing needs of scientific users \cite{},
-providing one possible reason for the proliferation of software
-packages with slightly different goals and feature sets. To address
-this problem, we feel that researchers should be allowed and
+A common user complaint about commercial software with proprietary
+code bases is that tools are overly rigid and ill-suited for adapting
+to the rapidly changing needs of users \cite{morgan2007benefits}.  The
+fast pace and necessary interaction with bleeding-edge technologies
+provides one possible reason for the proliferation of lab management
+software packages with slightly different goals and feature sets. To
+address this problem, we feel that researchers should be allowed and
 encouraged to customize and modify their lab management software to
 meet their needs. Open-source projects are theoretically arbitrarily
 extensible, since users may directly modify the software, but in many
 cases open source tools are still not designed with customization in
-mind.
+mind. Systems with a modular design that support community-crafted
+plugins, user-level scripting, and straightforward integration with
+third-party tools are able to grow alongside users' changing needs and
+allow dedicated users to compound the initial learning investment over
+time. Such systems, when well-designed, often benefit from greater
+longevity and feature-richness than traditional monolithic programs
+\cite{Emacs, SuperCollider}.
+
+\subsection{User compliance}
+A known challenge faced when developing software for applications such
+as reproducible research is that feature-rich tools often present users
+with a substantial learning curve, deterring widespread
+adoption. Tools which do not confer an obvious
+advantage immediately or disrupt users' existing workflows are likely
+to go unused, wasting development effort. Research on the topic
+suggests that ease of use and accessibility of documentation are
+important concerns for promoting user adoption
+\cite{Lederer2000}. Usability can also be improved and demonstrated by
+providing concrete examples of how the software can solve problems
+faced routinely by domain scientists and encouraging users to tailor
+the tools to their unique preferences and needs. Other important
+determinants of user compliance include upgradability, technical
+support, reliability, and compatibility with existing tools
+\cite{wang2001open}. Addressing user experience concerns from the
+outset of a design and incorporating feedback in the development
+process can result in an ultimately richer product, and this is one of
+the key insights of the now-popular Agile development methodology
+\cite{begel2007usage}.
 
 \subsection{Security}
-
+Intellectual property is an important issue in both industrial and
+academic research, given that funding, commercial competitiveness, and
+legal and professional recognition are often contingent on
+\gls{scientificPriority}. Internet-connected software which manages
+potentially sensitive data and design documents must therefore make
+digital security a principal concern. An architecture for online
+experiment analysis and design must carefully conform to the latest
+security best practices and maintain careful access controls while
+allowing for collaboration.
 
 \section{Review of existing experiment management \mbox{software}}
 
@@ -182,20 +241,18 @@ The complex needs of modern research have created a large specialized
 software market, and there are now dozens of tools for computerizing
 various laboratory management and research tasks. There are now many
 companies offering lab informatics software with a broad range of
-capabilities,
-
-Since many of these programs are proprietary, it is difficult to
-compare their feature sets precisely.
-
-
+capabilities. Since many of these programs are proprietary, it is
+difficult to compare their feature sets precisely, and many
+packages are defunct or poorly documented. Below we attempt to provide a
+broad overview of the major classes of software most aligned with our
+goals, giving a few examples of prominent products in each category.
 
 \subsection{Electronic lab notebooks}
-
 An \gls{ELN} is a software tool for helping
 researchers to chronicle their day-to-day investigations and
 results. A typical \gls{ELN} package allows researchers to compose
 rich-text documents consisting of text and figures alongside technical
-artifacts such as data tables. Several surveys of
+\glspl{artifact} such as data tables. Several surveys of
 commercially available ELNs have been published
 \cite{Rubacha2011, Dirnagl2016}, but the domain is still evolving
 rapidly and some of these programs have begun to integrate complex
@@ -215,11 +272,7 @@ documentation. Popular solutions in this domain include Mathematica
 \cite{mathematica}, R \cite{Rlang}, IPython/Jupyter \cite{IPython},
 and MATLAB Notebook \cite{MATLAB}.
 
-
-
-
 \subsection{Workflow design tools}
-
 Defining, composing, and documenting complex procedures is a core
 organizational need of many research groups. A number of so-called
 \glspl{workflowMgmt} have emerged to help manage task schedules and
@@ -284,8 +337,6 @@ implementations are currently freely available. The extreme complexity
 of the model is also an impediment to adoption by end users as well as
 implementation.
 
-
-
 \subsection{\Gls{LIMS}}
 A \gls{LIMS} is a tool for tracking the operations and assets
 of a laboratory. Commercial tools by this name provide a wide range
@@ -322,10 +373,7 @@ specific set of associated hardware and at the time of this writing
 lacks desirable features such as modularity, user-customizability, and
 version control.
 
-
-
 \subsection{Equipment automation tools}
-
 To extend automation of scientific processes beyond the purely
 computational domain, several vendors offer tools for coordinating
 simultaneous operation of actuators and data acquisition modules.
@@ -352,30 +400,71 @@ data acquisition platforms over the web \cite{ZettaJS}, with the
 stated goal of connecting devices to the \gls{IoTg} using existing web
 technologies.
 
-
 Unfortunately, relatively few \gls{LIMS} vendors incorporate equipment
-automation into their feature sets.
+automation into their feature sets. Even fewer packages seem to
+recognize the ways \gls{ELN} capabilities could be complemented by
+end-to-end experiment design and execution support. We feel that there
+is a promising niche for software synthesizing the best features of
+automation software, cloud-based \gls{LIMS}, and metadata-rich
+\gls{ELN}, and this thesis intends to articulate the design of such a
+framework.
 
 
 
 \section{Rich publication data models}
+A core component of a software system for experiment management is its
+model for representing research \glspl{artifact}. Knowledge
+engineering and data archiving researchers have proposed several
+approaches for representing the broad space of research-relevant
+information in a machine-readable form, and some of these models are
+recognized in this section.
+
+\subsection{Semantic provenance models}
+Academic work on structured representations of research artifacts,
+their relationships, and their provenance has largely built on
+semantic web technologies such as the so-called linked data network
+\cite{LinkedData}. Linked data calls for scientific resources on the
+web to include hyperlinks to semantically related external pages. In
+particular, this provides a mechanism for published data sets to
+record their provenance by explicitly stating a chain of relationships
+to their point of creation. A standards-track recommendation endorsed
+by the the World Wide Web Consortium known as W3C PROV \cite{PROV} has
+recently been developed to specify how dissemination units should
+identify their influences. Semantic web technology has enjoyed many
+years of academic development and resulted in some promising
+high-profile projects such as DBpedia \cite{DBpedia}. However,
+criticism of the semantic web's vision and approach has been readily
+available throughout its long history
+\cite{Marshall:2003:SW:900051.900063}, and due to a lack of interest
+in the industry and open source software communities the tooling
+support for developing cutting-edge web apps that rely on \gls{RDF}
+metadata remains limited.
 
 \subsection{Research objects}
-
-
-
-
+A \gls{researchObject} is a proposed format for archiving scientific
+data as well as an example of a richly annotated electronic
+publication format \cite{bechhofer2010research}. Many of the existing
+publications on the research object model use linked data technology
+to encode relationships between the constituent artifacts of a
+research object as well as between
 
 
 
 \section{Summary}
-
 A number of software tools for automating data collection, analyzing
 and comparing data sets, and interdisciplinary scientific
-collaboration have emerged in recent years. Moving toward an    will
-require the convergence of \gls{LIMS} software with equipment automation .
-Many commercial \gls{LIMS} are also inadequately flexible to researchers'
-rapidly changing data organization requirements
+collaboration have emerged in recent years. Many of these packages
+provide much-needed informatics capabilities that are currently being
+leveraged by both academic and industry labs, especially in the
+biomedical and healthcare sectors. However, addressing the full set of
+challenges posed by interdisciplinary high-throughput sensor research
+and development will require the integration of \gls{LIMS}
+functionality, an electronic notebook editor, and a scripting or
+graphical programming solution for equipment automation into a
+cloud-based software framework that currently does not exist. The
+remainder of this thesis will describe the proposed design and
+prototype implementation of a suite of software tools which
+synthesizes and expands upon the programs described above.
 
 \end{document}
 
