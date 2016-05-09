@@ -3,22 +3,36 @@
 \begin{document}
 
 \chapter{Architecture}
-
 Characterization and development of sensor arrays presents a broad
 range of research challenges, not least of which relate to data
-organization. A LIMS adequate to the needs of these workflows
+organization. A \gls{LIMS} adequate to the needs of our example
+application must provide
+
 This chapter abstractly describes the constituent components
 of the software framework we have built for collaborative design,
-execution, and analysis of experiments.
+execution, and analysis of experiments. When describing each
+element, we document some of the phases of our iterative design
+process that led to these decisions.
 
-\section{Design goals}
+\section{Physical architecture}
 
+\section{Network architecture}
+% \begin{figure}
+%   \includegraphics[width=\textwidth]{network-monolithic}
+%   \caption{
+%     Schematic of an example experimental apparatus for
+%     characterizing an array of electrochemical gas sensors.
+%     Inset: some commonly used stimulus waveforms for interrogating
+%     electrochemical sensors.
+%     \label{fig:EchemUseCase}
+%   }
+% \end{figure}
 
+\subsection{Monolithic approach}
 
+\subsection{Microservice-oriented}
 
-\section{Microservices}
-
-
+\subsection{Switchboard service}
 
 \section{Data model}
 
@@ -28,6 +42,28 @@ execution, and analysis of experiments.
 
 
 \section{Device control}
+A core goal of our design is to enable researchers to incorporate
+choreography of physical lab equipment into the executable workflows
+they create. Interact with the variety of commercial and custom
+hardware found in a typical experimental lab requires a flexible
+approach, given that computer control interfaces and data formats for
+scientific equipment are heterogeneous and very poorly
+standardized. This section describes an approach for building a
+modular library of device drivers which integrate with the rest of the
+system while providing users with tools for extension and
+customization.
+
+\subsection{Instrument manager}
+The instrument manager is a microservice responsible for detecting
+connected devices, determining the appropriate device driver for
+communicating with them, and presenting a unified interface to the
+switchboard.
+
+\subsection{Interface API}
+
+\subsection{Enumeration}
+
+\subsection{Protocol composition}
 
 
 

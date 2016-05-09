@@ -49,7 +49,7 @@ operating in tandem it is necessary to employ computer control to
 achieve uniform results.
 
 This experimental scenario, depicted schematically in figure
-\ref{fig:EchemUseCase},
+\ref{fig:EchemSetup},
 will serve as a running example to demonstrate the
 capabilities and requirements of the software tool described by this
 thesis. Our ideal experimental setup involves commercial lab equipment
@@ -74,10 +74,13 @@ following section, followed by an overview of the existing tools which
 fulfill some of these requirements.
 
 \begin{figure}
+  \includegraphics[width=\textwidth]{echem-setup}
   \caption{
     Schematic of an example experimental apparatus for
     characterizing an array of electrochemical gas sensors.
-    \label{fig:EchemUseCase}
+    Inset: some commonly used stimulus waveforms for interrogating
+    electrochemical sensors.
+    \label{fig:EchemSetup}
   }
 \end{figure}
 
@@ -263,6 +266,16 @@ record keeping \cite{FDA}, a set of guidelines promoting thorough,
 auditable documentation of research performed in the agricultural and
 health sectors.
 
+\begin{figure}
+%  \includegraphics[width=\textwidth]{ipython}
+  \caption{
+    An electronic lab notebook page in IPython/Jupyter v
+    \cite{IPython} integrating documentation, code,
+    and figures.
+    \label{fig:Ipython}
+  }
+\end{figure}
+
 Most general-purpose programming language environments targeted toward
 scientific computing now include some degree of ELN
 functionality. These tools are typically environments for literate
@@ -282,7 +295,8 @@ dependencies in domains such as manufacturing
 \cite{cardoso2004workflow}. Workflow editors provide users with a
 means of constructing executable tasks by describing how
 data moves through them, typically by visually manipulating a directed
-graph of processes. In some cases workflows may serve purely as
+graph of processes as in figure \ref{fig:TavernaWorkflow}. In some
+cases workflows may serve purely as
 documentation, while workflow tools for \textit{\gls{insilico}} science
 are often executable and may be bundled with data to provide direct
 replication of analysis flows on other machines. The most prominent
@@ -300,6 +314,17 @@ workflow specification tools with software for controlling lab
 equipment, it may be possible to provide domain scientists with a
 powerful framework for defining executable specifications of
 complicated laboratory procedures.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{taverna-workflow}
+  \caption{
+    Editing a protein sequence analysis workflow
+    (retrieved from \cite{ExampleWorkflow}) in
+    Apache Taverna v2.5 \cite{Taverna}, an open-source workflow
+    management tool.
+    \label{fig:TavernaWorkflow}
+  }
+\end{figure}
 
 A related class of software reproducibility tools encourages users to
 bundle input sets and sequences of data-transforming programs into a
@@ -372,6 +397,17 @@ application's needs. Unfortunately, this tool is restricted to a
 specific set of associated hardware and at the time of this writing
 lacks desirable features such as modularity, user-customizability, and
 version control.
+
+Most \gls{LIMS} toolkits are proprietary and closed-source, but given the
+demand for this type of application from large industrial groups the
+field is in some ways fairly mature. Some of the architectural
+decisions that are commonplace in modern \gls{LIMS}, especially their
+cloud-oriented model, support for user customization, and focus on
+auditability, seem well-suited
+for the kind of end-to-end research management system we intend to
+build. Throughout this thesis we refer to the software tool we are interested
+in building as a \gls{LIMS} due to the broad range of
+functionality seen in tools which label themselves in this way.
 
 \subsection{Equipment automation tools}
 To extend automation of scientific processes beyond the purely
