@@ -20,6 +20,14 @@
   see=[Glossary:]{APIg}
 }
 
+\newglossaryentry{backend}{
+  name={backend},
+  description={the internal server-side logic of a web app, typically
+    responsible for interacting with databases and performing
+    intensive computations
+  }
+}
+
 \newglossaryentry{BPMNg}{
   name={BPMN},
   description={Business Process Model Notation, a specification of a
@@ -57,6 +65,12 @@
   see=[Glossary:]{ELNg}
 }
 
+\newglossaryentry{frontend}{
+  name={frontend},
+  description={the user-facing portion of a web app, e.g. the
+    graphical interface displayed by a browser}
+}
+
 \newglossaryentry{insilico}{
   name={in-silico},
   description={A designation applied to scientific endeavors which
@@ -91,6 +105,12 @@
   first={laboratory information management system
     (LIMS)\glsadd{LIMSg}},
   see=[Glossary:]{LIMSg}
+}
+
+\newglossaryentry{microservice}{
+  name={microservice},
+  description={a small, single-purpose web application intended to
+    communicate with a collection of other microservices}
 }
 
 \newglossaryentry{researchObject}{name={research object},
@@ -139,6 +159,26 @@ base language level for the W3C's \gls{semanticWeb} standards}
   description={an approach to knowledge management where Internet
     resources are annotated with groups of hyperlinks describing their
     relationships to other resources}
+}
+
+\newglossaryentry{switchboard}{
+  name={switchboard},
+  description={a \gls{microservice} responsible for determining which
+    other microservices are active and making them available at
+    appropriate \glspl{URI}
+  }
+}
+
+\newglossaryentry{URIg}{
+  name={URI},
+  description={a text string uniquely identifying an Internet resource}
+}
+\newglossaryentry{URI}{
+  type=\acronymtype,
+  name={URI},
+  description={uniform resource identifier},
+  first={uniform resource identifier (URI)\glsadd{URIg}},
+  see=[Glossary:]{URIg}
 }
 
 \newglossaryentry{VCSg}{
