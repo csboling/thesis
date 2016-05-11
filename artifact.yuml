@@ -1,0 +1,17 @@
+[Artifact]<>-0..*[Capability|name:string]
+[Capability]<>-ui[UI],
+[Artifact]^-[Instrument|display:Capability;edit:Capability;API:Capability;driver:Capability]
+
+[UI]<>-0..*[Asset]
+
+[Artifact]^-[Bench]
+[Artifact]^-[Workflow]
+[Artifact]^-[Run]
+
+[Bench]<>-0..*[Instrument]
+[Bench]<>-0..*[Workflow|execute:Capability]
+[Workflow]<>-0..*[Run|display:Capability]
+
+[Artifact]^-[Result]
+[Run]<>-0..*[Result|display:Capability]
+[Result]<>-0..*[Asset|path:string]
