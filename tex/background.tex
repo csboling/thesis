@@ -459,8 +459,8 @@ recognized in this section.
 Academic work on structured representations of research artifacts,
 their relationships, and their provenance has largely built on
 semantic web technologies such as the so-called linked data network
-\cite{LinkedData}. Linked data calls for scientific resources on the
-web to include hyperlinks to semantically related external pages. In
+\cite{LinkedData}. Linked data are scientific resources on the
+web which include hyperlinks to semantically related external pages. In
 particular, this provides a mechanism for published data sets to
 record their provenance by explicitly stating a chain of relationships
 to their point of creation. A standards-track recommendation endorsed
@@ -471,18 +471,58 @@ years of academic development and resulted in some promising
 high-profile projects such as DBpedia \cite{DBpedia}. However,
 criticism of the semantic web's vision and approach has been readily
 available throughout its long history
-\cite{Marshall:2003:SW:900051.900063}, and due to a lack of interest
-in the industry and open source software communities the tooling
-support for developing cutting-edge web apps that rely on \gls{RDF}
+\cite{Marshall:2003:SW:900051.900063}, and in some ways the tooling
+support for integrating modern web apps with \gls{RDF}
 metadata remains limited.
+
+An important specification tool used in the linked data community is
+the notion of an ontology language. These are sets of \gls{RDF}
+predicates which provide a well-defined vocabulary for discussing
+abstract relationships between entities, allowing domain experts to
+encode contextual information about concepts and resources in their
+field in a machine-readable format. W3C PROV, for instance, extends
+more generic ontology languages such as OWL2 \cite{owl2-overview} to
+include terms which are explicitly concerned with information about an
+entity's relationship to its predecessors. These ``knowledge graphs''
+can then be examined and searched for relationships by using a
+specialized graph query language such as SPARQL \cite{SPARQL}.
+Unfortunately, existing knowledge databases require complex external
+tools to draw inferences based on the semantic values of the
+predicates in question, such as concluding from the knowledge that A
+relies on B and B relies on C that A relies on C indirectly. This can
+make knowledge graphs very difficult to work with. Some interesting
+theoretical work has recently made efforts to address these
+shortcomings by applying mathematical tools for automated reasoning to
+knowledge representation, e.g. \cite{spivak2012ologs}. Semantic web
+technologies provide some interesting ideas for organizing documents
+and providing users with meaningful connections between research
+artifacts of interest.
 
 \subsection{Research objects}
 A \gls{researchObject} is a proposed format for archiving scientific
 data as well as an example of a richly annotated electronic
-publication format \cite{bechhofer2010research}. Many of the existing
-publications on the research object model use linked data technology
-to encode relationships between the constituent artifacts of a
-research object as well as between
+publication format \cite{bechhofer2010research}. The progenitors of
+this model argue that paper publications are inadequate to capture the
+intricacies of modern research activities which draw on a
+heterogeneous mixture of digital and physical resources. Instead,
+these authors call for scientists to use recent developments in social
+network technology and information capture to collaboratively create
+and share rich digital science resources such as executable workflows
+and electronic lab notebooks. This vision has provided a major source
+of motivation for our present work: we aim to build an e-laboratory
+software framework where research objects are native and first-class,
+and scientists may construct, review, and refine their experiments and
+analyses in a flexible, provenance-aware toolkit.
+
+Many of the existing publications on the research object model
+\cite{corcho2012workflow, belhajjame2015using} use
+linked data and semantic web technology to specify the format a
+research object should use for encoding relationships
+between the constituent artifacts of a research object as well as
+between data sets and the resources that produced them. This approach
+seems like an interesting way to leverage the existing organization
+mechanimss of the linked data web to further promote the usefulness of
+rich publication units.
 
 
 
