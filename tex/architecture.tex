@@ -434,10 +434,42 @@ major phases indicated by numerals in the figure.
 
 
 \section{Security model}
-Each eGor service requires client services to produce an access token
-before it will perform work on their behalf.
-Users may provide labmates or collaborators with access to
-services and artifacts which they own or manage.
+Especially when dealing with sensitive scientific data and remote
+access to expensive lab equipment, careful access control is an
+important architectural concern. As in a traditional client-server
+model, when clients authenticate themselves to the system they are
+provided with an access token that can be used to preserve their
+credentials between browser sessions. When a user makes a request
+through a sequence of proxy services, this access token is provided
+along with the request and is passed along to each service on the way
+to the request's destination. Each eGor service requires client
+services to produce an access token before it will perform work on
+their behalf, and a service may query a user management service with
+an access token to determine the identity of a user and whether their
+access is authorized.
+
+Switchboard services for collaborator's
+installations may also query the user management service of the
+installation requesting access in order to either deny access to a
+token outright or to generate an access token corresponding to a
+foreign user.  Users may provide labmates or collaborators with
+authorization rights to services and artifacts which they own or
+manage, and doing so modifies the list of user IDs the service will
+permit to access certain operations.
+
+
+
+\section{Summary}
+We have outlined an end-to-end system architecture for a set of
+interacting e-laboratory software components. We feel that this
+approach provides a reasonable combination of our target system's
+ambitious list of desirable features and includes a number of
+noteworthy design ideas. In particular, we believe that the emphasis
+on modularity from the ground up will be rewarded by benefits in
+scalability, extensibility, and user customization that are not seen
+in existing \gls{LIMS}. In the next chapter we describe our efforts
+to implement this vision in detail.
+
 
 
 \end{document}
