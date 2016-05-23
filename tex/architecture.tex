@@ -60,17 +60,21 @@ resources interact with each other in an ad-hoc fashion manually
 facilitated by users. We believe that tremendous gains can be made for
 research organization, accuracy, and reproducibility by coordinating
 the interactions between these components with a carefully designed
-software framework. % A schematic diagram of some of these interacting
-% components is depicted in figure \ref{fig:PhysArch}.
+software framework. A schematic diagram of some of these interacting
+components is depicted in figure \ref{fig:DAQFlow}.
 
-% \begin{figure}
-%   % \includegraphics[width=\textwidth]{phys-arch}
-%   \caption{
-%     Representation of some of the digital resources found in typical
-%     scientific workflows and their relationships.
-%     \label{fig:PhysArch}
-%   }
-% \end{figure}
+\begin{figure}
+  \includegraphics[width=\textwidth]{daq-flow}
+  \caption{
+    Representation of some of the digital resources found in
+    typical scientific workflows and their relationships.Raw data sets
+    captured from an experimental run are often insufficient to
+    reconstruct meaningful plots or perform detailed analysis, and
+    researchers must rely on undocumented, hidden information sources
+    to perform a complete analysis.
+    \label{fig:DAQFlow}
+  }
+\end{figure}
 
 The most important goal of the present work is to automatically
 execute physical experiments by employing computer control,

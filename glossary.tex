@@ -92,6 +92,16 @@
   see=[Glossary:]{IoTg}
 }
 
+\newglossaryentry{lazyLoad}{
+  name={lazy-load},
+  description={
+    a strategy where an application waits to load subcomponents until
+    they are about to be used, decreasing the program's startup time
+    and allowing it to depend on resources which may not be locatable
+    until runtime information is available
+  }
+}
+
 \newglossaryentry{LIMSg}{
   name={laboratory information management system (LIMS)},
   description={A bundle of software tools for coordinating the activities of
@@ -155,6 +165,20 @@ base language level for the W3C's \gls{semanticWeb} standards}
   see=[Glossary:]{RESTAPIg}
 }
 
+\newglossaryentry{RPCg}{
+  name={RPC},
+  description={a programming abstraction where a sequence of network
+    transactions is thought of as one machine remotely invoking a
+    subroutine over the network, receiving its return value as a response}
+}
+\newglossaryentry{RPC}{
+  type=\acronymtype,
+  name={RPC},
+  description={remote procedure call},
+  first={remote procedure call (RPC)\glsadd{RPCg}},
+  see=[Glossary:]{RPCg}
+}
+
 \newglossaryentry{scientificPriority}{
   name={scientific priority},
   description={credit for being the first to publish or describe an
@@ -166,6 +190,19 @@ base language level for the W3C's \gls{semanticWeb} standards}
   description={an approach to knowledge management where Internet
     resources are annotated with groups of hyperlinks describing their
     relationships to other resources}
+}
+
+\newglossaryentry{SQLg}{
+  name={SQL},
+  description={a standardized language for accessing and managing
+    databases using sets of search criteria}
+}
+\newglossaryentry{SQL}{
+  type=\acronymtype,
+  name={SQL},
+  description={Structured Query Language},
+  first={Structured Query Language (SQL)\glsadd{SQLg}},
+  see=[Glossary:]{SQLg}
 }
 
 \newglossaryentry{switchboard}{
@@ -200,6 +237,20 @@ base language level for the W3C's \gls{semanticWeb} standards}
   description={version control system},
   first={version control system (VCS)\glsadd{VCSg}},
   see=[Glossary:]{VCSg}
+}
+
+\newglossaryentry{WAMPg}{
+  name={WAMP},
+  description={a high-level application protocol built on top of
+    WebSockets for allowing heterogeneous services to communicate via
+    remote procedure calls and publish/subscribe event streams}
+}
+\newglossaryentry{WAMP}{
+  type=\acronymtype,
+  name={WAMP},
+  description={Web Application Messaging Protocol},
+  first={Web Application Messaging Protocol (WAMP)\glsadd{WAMPg}},
+  see=[Glossary:]{WAMPg}
 }
 
 \newglossaryentry{workflowMgmt}{
