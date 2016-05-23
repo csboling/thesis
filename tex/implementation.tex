@@ -18,7 +18,10 @@ level of the software stack. This chapter provides a description of
 what new components were implemented by the project's development
 team, which external tools and libraries were used, and what
 architectural and practical concerns factored into the selection of
-these methods.
+these methods. This is intended to provide an overall understanding of
+how the application is structured rather than detailed developer
+documentation, which can be found at
+\url{https://github.com/egor-elab/doc}.
 
 
 
@@ -81,10 +84,7 @@ microservice architecture: components are sufficiently decoupled that
 they can individually be implemented in a language and style
 well-suited to their unique challenges.
 
-
-
-\section{Design principles}
-
+\subsection{Design principles}
 Over the course of developing and refining the eGor toolchain, several
 recurring patterns have emerged which seem natural fits for addressing
 the application's goals and have informed subsequent iterations of the
@@ -93,7 +93,7 @@ been observed and employed throughout the code base, providing a feel
 for the philosophy of the complete system before delving into
 implementation details.
 
-\subsection{Request/Response vs. Publish/Subscribe}
+\subsubsection{Request/Response vs. Publish/Subscribe}
 The most common form of high-level network traffic on the web is HTTP,
 which uses request/response exchanges to pass data between hosts. For
 instance, a client such as a web browser might issue an HTTP request
@@ -141,7 +141,7 @@ pattern for both these use cases, treating data collection devices as
 publishers of streams of data fragments which may be subscribed to by
 other services or graphical interfaces throughout the system.
 
-\subsection{Dynamic loading}
+\subsubsection{Dynamic loading}
 One of the chief observations underpinning eGor's design is that
 researchers' needs are too diverse and rapidly changing to be
 satisfactorily addressed by a single rigidly constructed
@@ -223,7 +223,6 @@ subsystems, such as loading new user interface components or adding
 new waveform generation routines to our real-time electrochemical
 interrogation platform.
 
-
 \begin{figure}
   \includegraphics[width=\textwidth]{dynamic-loading}
   \caption{
@@ -236,12 +235,11 @@ interrogation platform.
   }
 \end{figure}
 
-\subsection{API/structure isomorphism}
+\subsection{Implementation status}
 
 
 
 \section{Service interconnect}
-
 As described in Chapter 3, the microservice architectural pattern
 provides a strategy for compartmentalizing the development effort,
 promoting modularity of design, allowing for future customization and
@@ -254,31 +252,124 @@ the microservice approach pairs well with eGor's high-level goals and
 has enabled us to build a flexible and sophisticated system.
 
 \subsection{REST APIs}
+One of the elements of the web's modern infrastructure that has made
+networked microservice-oriented applications a practical possibility
+is the widespread adoption by businesses and open-source software
+providers of relatively uniform, publically available \glspl{API} over
+HTTP. Most commonly, companies expose reusable public components of
+their web servers as HTTP interfaces which aspire to \gls{REST}
+principles, i.e., they model the evolution of an application's state
+as a sequence of transitions between states which are modeled by
+\glspl{URI}. These conventions have allowed for unprecedented
+interoperability between applications written at different companies
+for very different purposes. As a prominent example, Google's Maps
+\gls{API} provides a mechanism for other applications to retrieve
+geographical information over an Internet connection rather than
+maintaining independent location databases. Given that many consumers
+of these APIs are web browser applications which use JavaScript to
+issue background HTTP requests, \gls{JSON} is a popular serialization
+format for passing data payloads to and from API endpoints. This
+structure, where a website provides an indexable collection of
+\gls{JSON}-encoded resources which can be retrieved and manipulated
+via HTTP verbs, is often what is meant by a \gls{RESTAPI} in today's
+software jargon.
 
+\glspl{RESTAPI} are useful interfaces for making application state and
+data externally accessible, but are also a viable option for
+structuring networked communication between different parts of the
+same app. Most commonly, a \gls{RESTAPI} is used to provide structured
+database access to client code running in a browser app. For example,
+a news website might allow clients to retrieve a list of articles (in
+\gls{JSON} format) by making a \texttt{GET /articles} HTTP request,
+then retrieve the user's selected document by querying \texttt{GET
+  /articles/2}, then commit a submitted comment to the database with
+\texttt{POST /articles/2/comments}. Many of the existing tools for
+constructing \glspl{RESTAPI} with web programming frameworks such as
+Python's Flask \cite{Flask} or Express in NodeJS \cite{Express}
+provide for this use case.
 
+In eGor we assign URIs in a similar hierarchical fashion, but the
+total application consists of a number of groups of microservices,
+each potentially possessing a \gls{RESTAPI}. As new services are
+loaded by a particular switchboard, their \glspl{API} are attached to
+the tree of existing \glspl{URI}, much as a filesystem on a new hard
+drive might be mounted at a particular path on a UNIX filesystem.  An
+eGor switchboard achieves this by serving a proxy at a \gls{URI}
+corresponding to a known lab machine, such as \texttt{/machines/0},
+relaying traffic to and from that machine which in turn provides
+access to connected devices as \glspl{RESTAPI} at appropriate
+\glspl{URI}. Information about the waveform types that a device called
+``aMEASURE I'' is capable of producing would then be available by
+accessing \texttt{GET /machines/0/devices/aMEASURE\_I/wave/info},
+assuming that the \gls{RESTAPI} for \texttt{aMEASURE\_I} understands
+how to interpret the path \texttt{/wave/info}. Specifying a
+\gls{RESTAPI} is part of a user's responsibility when defining a
+driver for a new device, as explained further in section
+\ref{sec:DevDrivers}.
 
-\subsection{WAMP Routing}
-The \gls{WAMP} protocol and software stack described by Crossbar.io
-\cite{CrossbarIO} provides a set of capabilities which are a good
-match for our application, including built-in support for routing
-remote procedure calls between any two connected services and
-bidirectional ``publish/subscribe''-style message passing
-\cite{WAMP}. The protocol was explicitly designed to simplify the
-implementation of \gls{IoT} applications, especially those with
-service-oriented architectures that span multiple devices of different
-types.
+\subsection{WAMP routing}
+\gls{WAMP} is an open protocol and software stack definition created
+by Tavendo, who provide reference implementations in several languages
+in the form of the Autobahn protocol libraries and a request router
+called crossbar.io \cite{CrossbarIO}. The authors of these tools claim
+that their protocol simultaneously addresses many of the use cases of
+existing protocols for machine-to-machine communication such as
+\gls{AMQP} and socket.io \cite{socket.io}. The protocol is built on
+top of WebSockets, which uses a TCP connection to achieve reliable
+full-duplex streaming and is now supported by all major web browsers
+and a number of web frameworks in several programming languages. One
+advantage provided by this protocol design approach is that machines
+for hosting microservices or acting as clients for \gls{WAMP} networks
+can require less special software than is required for using some
+message queueing infrastructures such as \gls{AMQP}, simplifying the
+installation process for end users.
+
+\gls{WAMP} provides a set of capabilities which are a good match for
+our application, including built-in support for routing remote
+procedure calls between any two connected services and bidirectional
+publish/subscribe-style message passing \cite{WAMP}. The protocol was
+explicitly designed to simplify the implementation of \gls{IoT}
+applications, especially those with service-oriented architectures
+that span multiple devices of different types.  This provides an
+attractive solution for addressing many of the problems faced when
+developing our system, especially given that it allows for dynamic
+registration and removal of remotely-callable methods, flexible
+routing of data sources through different machines and endpoints, and
+is inherently bidirectional in the sense that any service can initiate
+communication with any other so long as it has sufficient security
+privileges. In the existing implementation, \gls{WAMP}'s capabilities
+have primarily been used for service-to-service communication and to
+organize streaming data transactions from data sources to sinks such
+as real-time plots and array storage services. A more elegant and
+truly service-oriented design could be achieved by adopting \gls{WAMP}
+for issuing user commands and making database accesses as well, but at
+the time of this writing \gls{WAMP} has poorer tooling and
+documentation than some of its more established counterparts.
 
 
 \section{User interface}
+Providing a useful and manageable interface for scientific users who
+are not computer experts is one of eGor's most important design
+constraints.
 
 \subsection{Thin-client design}
 
 \subsection{Angular 2}
 
+\subsection{Jupyter}
+The Jupyter project (formerly IPython) is an open-source software tool
+providing a flexible architecture for creating electronic lab
+notebooks for scientific computing. Jupyter now supports many of the
+most popular programming languages for science and engineering
+applications and has several extension packages providing additional
+functionality, most notably JupyterHub. JupyterHub provides a web
+server which allows teams to share and collaboratively edit notebooks
+in the browser.
+
 
 \section{Database management}
 
-\subsection{NoSQL / schemaless}
+\subsection{NoSQL and schemaless databases}
 Traditional web applications typically use relational databases for
 persistent data storage, querying and assemblying them using \gls{SQL}
 
@@ -312,6 +403,12 @@ attempting to provide individual drivers and protocol translators for
 the many devices that our future users may need, we have constructed a
 Python library of simple   which can be connected into more elaborate
 protocol stacks.
+
+
+\subsection{Writing drivers} \label{sec:DeviceDrivers}
+
+\section{Summary}
+
 
 
 

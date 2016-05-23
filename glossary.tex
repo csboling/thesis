@@ -5,6 +5,20 @@
     experimental protocol specification}
 }
 
+\newglossaryentry{AMQPg}{
+  name={AMQP},
+  description={a network protocol for sharing data and computations
+    between a cluster of connected computers. Implemented most prominently by
+    RabbitMQ \cite{RabbitMQ}}
+}
+\newglossaryentry{AMQP}{
+  type=\acronymtype,
+  name={AMQP},
+  description={Advanced Message Queueing Protocol},
+  first={Advanced Message Queueing Protocol (AMQP)\glsadd{AMQPg}},
+  see=[Glossary:]{AMQPg}
+}
+
 \newglossaryentry{APIg}{
   name={API},
   description={An application programming interface (API) is a
@@ -92,6 +106,17 @@
   see=[Glossary:]{IoTg}
 }
 
+\newglossaryentry{JSONg}{
+  name={JSON},
+  description={
+    a simple text format, originally native to JavaScript, for encoding hierarchical
+    data structures containing fields of many different types
+  }
+}
+\newglossaryentry{JSON}{ type=\acronymtype, name={JSON},
+  description={JavaScript Object Notation}, first={JavaScript Object
+    Notation (JSON)\glsadd{JSONg}}, see=[Glossary:]{JSONg} }
+
 \newglossaryentry{lazyLoad}{
   name={lazy-load},
   description={
@@ -150,19 +175,26 @@ base language level for the W3C's \gls{semanticWeb} standards}
   see=[Glossary:]{RDFg}
 }
 
-\newglossaryentry{RESTAPIg}{
+\newglossaryentry{RESTg}{
+  name={REST},
+  description={a software architecture where clients interact with
+    servers by navigating a sequence of states or resources, each
+    associated with a particular URI}
+}
+\newglossaryentry{REST}{
+  type=\acronymtype,
+  name={REST},
+  description={representational state transfer},
+  first={representational state transfer (REST)\glsadd{RESTg}},
+  see=[Glossary:]{RESTg}
+}
+
+\newglossaryentry{RESTAPI}{
   name={REST API},
   description={An API adhering to Representational State Transfer
     (REST) principles. REST APIs are endpoints for issuing control and
-  data commands over a \gls{HTTP} interface, allowing web servers to
+  data commands over an HTTP interface, allowing web servers to
   expose functionality over the internet in a client-agnostic fashion}
-}
-\newglossaryentry{RESTAPI}{
-  type=\acronymtype,
-  name={REST API},
-  description={representational state transfer application programming interface},
-  first={REST API\glsadd{APIg}},
-  see=[Glossary:]{RESTAPIg}
 }
 
 \newglossaryentry{RPCg}{
