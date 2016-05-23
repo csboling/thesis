@@ -251,7 +251,6 @@ interrogation platform.
   }
 \end{figure}
 
-\subsection{Implementation status}
 
 
 
@@ -343,7 +342,10 @@ installation process for end users.
 \gls{WAMP} provides a set of capabilities which are a good match for
 our application, including built-in support for routing remote
 procedure calls between any two connected services and bidirectional
-publish/subscribe-style message passing \cite{WAMP}. The protocol was
+publish/subscribe-style message passing \cite{WAMP}. Notably,
+\gls{WAMP} also describes how a service called a router facilitates
+organized communication between nodes by redirecting remote procedure
+calls and data streams to appropriate client endpoints. The protocol was
 explicitly designed to simplify the implementation of \gls{IoT}
 applications, especially those with service-oriented architectures
 that span multiple devices of different types. Furthermore, \gls{WAMP} is
@@ -358,7 +360,7 @@ registration and removal of remotely-callable methods, flexible
 routing of data sources through different machines and endpoints, and
 is inherently bidirectional in the sense that any service can initiate
 communication with any other so long as it has sufficient security
-privileges. In the existing implementation, \gls{WAMP}'s capabilities
+privileges. In our existing implementation, \gls{WAMP}'s capabilities
 have primarily been used for service-to-service communication and to
 organize streaming data transactions from data sources to sinks such
 as real-time plots and array storage services. A more elegant and
@@ -535,7 +537,18 @@ that change over time.
 In response to the difficulties posed by this technology, considerable
 investment has been made in recent years in developing alternative
 database styles which offer more flexibility and parallel
-scalability. The primary information of interest to eGor is complexly
+scalability. These so-called ``NoSQL'' databases have native data
+structures such as graphs, key-value pairs, or object models such as
+those found in object-oriented programming languages. Often these
+tools bill their data models as ``schemaless'', contrasting themselves
+with traditional relational databases where administrators must
+provide a predefined set of names, types, and relationships for the
+rows when a new table structure is created. Claimed benefits of NoSQL
+database software include improved adaptability to changing data
+formats and better performance for some applications
+\cite{Leavitt:2010:NDL:1731101.1731109}.
+
+The primary information of interest to eGor is complexly
 structured and chiefly concerned with relationships between
 publications, experiments, data sets, and devices, and we sought to
 adopt a database technology capable of naturally modeling these
@@ -548,7 +561,7 @@ model. MongoDB's internal structures also map directly to the
 representation throughout the eGor system. The popularity of document
 databases in the NodeJS ecosystem has created a thriving space of
 open-source tools for working with systems like MongoDB and connecting
-them to other important application components
+them to other important application components.
 
 Constructing an \gls{API} layer to expose \gls{REST}ful access to a
 database involves a substantial amount of boilerplate and can become
@@ -577,8 +590,24 @@ learning, and data science fields in recent years \cite{HDF5}. The
 open source working group responsible for developing the HDF5
 specification has also provided a Python web server for storing
 datasets and presenting them as network resources, which includes a
-reference implementation of a REST API for remotely manipulating
+reference implementation of a \gls{RESTAPI} for remotely manipulating
 and extracting subsets of datasets.
+
+eGor keeps a record of a given experimental run by capturing its
+metadata in a MongoDB collection reserved for cataloging past
+experiments. This document contains annotations about the experiment's
+purpose and outcomes, links to related artifacts, such as a workbench
+record describing the instruments involved and their connections, and
+an embedded result log document providing information on the
+experimental results. This result log provides information about where
+the tables of associated data can be found, in the form of links to
+HDF5 resources stored elsewhere on the network, and metadata about how
+the attached data sets should be interpreted such as information about
+measurement units. The HDF5 interfacing portion of eGor also includes
+a microservice which subscribes to data streams published by device
+drivers over WebSockets, buffers the incoming data, and appends it to
+appropriately organized HDF5 stores.
+
 
 
 \section{Device management}
@@ -649,7 +678,7 @@ up-to-date record of which equipment is connected.
   }
 \end{enumerate}
 
-\subsection{Protocol stacks}
+\subsection{Protocol stacks} \label{sec:DeviceDrivers}
 One of the most important capabilities of the eGor system is its
 ability to connect to computer-controlled lab equipment. Scientific
 processes often involve a wide range of legacy instruments which use
@@ -663,15 +692,44 @@ We abstractly define a protocol layer as a composable software unit
 for transforming units of data from one format to another. A protocol
 layer consists of a codec, a transport, and a controller. One or more
 of these subcomponents may inherit the default implementation from the
-``layer'' base class, which simply passes data through
-unaltered. These layers
+``layer'' base class, which simply passes data through unaltered. A
+codec is a direct, often reversible, transformation from one encoding
+to another, a transport is responsible for logically partitioning
+streams into different units, and a controller determines how packets
+are generated or consumed at each layer. Layers are bidirectional and
+symmetric by default, in the sense that device-bound traffic and
+host-bound traffic are assumed to have the same format at a given
+layer.  Using different layer assembly functions provided by the
+library, layers are ``stacked'' to form more complex protocols
 
-
-\subsection{Writing drivers} \label{sec:DeviceDrivers}
+Since the protocol stack abstraction captures the process of
+transcoding data between different formats as well as managing
+data transfers, combining a sequence of protocol layers can be used to
+assemble a Python device driver for a custom or commercial
+instrument. A completed eGor-compatible driver captures and transmits data to a
+low-level byte interface at one end and presents a high-level
+network-connected \gls{API} at the other. eGor drivers typically expose a
+set of remote procedure calls for manipulating the associated device
+and produce one or more event-driven data streams which are published
+to the \gls{WAMP} router. A developer may make a new device driver
+known to the system by assembling an appropriate protocol stack,
+identifying its network-facing communication points, and pointing
+eGor's database at a Git repository containing the driver code and an
+appropriate metadata file via the graphical interface. We have
+developed complete device drivers for aMEASURE I, its successor
+aMEASURE II, and a commercial gas flow control device manufactured by
+Alicat. Additionally, the eGor team provides a ``seed'' repository
+containing skeleton code for a custom device driver at
+\url{https://github.com/egor-elab/driver-seed.git}. We are hopeful
+that researchers who find our toolchain useful will help support the
+project's long-term usability by developing and contributing to a
+library of device drivers and other eGor services.
 
 \section{Summary}
-
-
+This chapter outlined the \glspl{designPattern} employed by the
+implemented eGor software and investigated some of the concrete
+tool selections and problem solving approaches chosen for assembling
+the system. The resulting application draws on a broad swath of
 
 
 
