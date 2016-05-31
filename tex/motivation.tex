@@ -4,24 +4,25 @@
 
 \chapter{Motivation}
 
-Poor reproducibility of scientific publications has been
-recognized as a growing problem in a number of research areas,
-particularly those in which experiments are complex and sensitive to
-small variations in methodology. Large-scale replication efforts have
-suggested reproducibility rates in some fields as low as 10\%
+Poor reproducibility of scientific publications has been recognized as
+a growing problem in a number of research areas, particularly those in
+which experiments are complex and sensitive to small variations in
+methodology. Large-scale replication efforts have suggested
+reproducibility rates in some fields as low as 10\%
 \cite{483531a}. Researchers have begun to call for improved
 documentation of the scientific process in fields as diverse as
 experimental psychology \cite{aac4716}, pharmaceutical research
-\cite{483531a}, astronomy \cite{1601.07858}, and areas of computer science such
-as machine learning \cite{}. Much of the recent attention paid to this
-issue comes in response to unique characteristics the scientific
-process has developed in the digital age, including unprecedented publication
-volume, insufficient documentation of complex experimental procedures,
-and the availability of software packages for manipulating statistics,
-but some critics suspect that many long-standing results are also
-inadequately verifiable. It has been suggested that factors such as
-publishing pressure, confirmation bias, and inadequate statistical
-power of hypotheses promote the widespread publication and citation of
+\cite{483531a}, astronomy \cite{1601.07858}, and areas of computer
+science such as machine learning \cite{OpenScienceML}. Much of the
+recent attention paid to this issue comes in response to unique
+characteristics the scientific process has developed in the digital
+age, including unprecedented publication volume, insufficient
+documentation of complex experimental procedures, and the availability
+of software packages for manipulating statistics, but some critics
+suspect that many long-standing results are also inadequately
+verifiable. It has been suggested that factors such as publishing
+pressure, confirmation bias, and inadequate statistical power of
+hypotheses promote the widespread publication and citation of
 unverifiable claims in all areas of experimental science
 \cite{10.1371/journal.pmed.0020124}. To make matters worse, the last
 few years have seen many cases of peer review fraud
@@ -104,58 +105,56 @@ these purposes are also insufficiently adaptable for the fast-paced
 and varied needs of active scientists, causing users to abandon the
 software once it presents more limitations than benefits.
 
-Fortunately, modern web technologies have begun
-to enable software design strategies that make a complex, customizable
-end-to-end solution feasible. Network-enabled services with
-diverse purposes and internal infrastructures have become increasingly
-interoperable thanks to the adoption of self-documenting web \glspl{API}. The
-increasing sophistication of web browsers has allowed for an
-explosion of rich client-side software experiences, enabling
-full-featured and user interfaces which are platform-independent and easily
-updated. A number of technologies such as distributed version control,
-demand-scaling cloud hosting services, and real-time full-duplex
-network data streaming have emerged as powerful tools for
-rapidly building robust and flexible web applications with
-unprecedented capabilities. The
+Fortunately, modern web technologies have begun to enable software
+design strategies that make a complex, customizable end-to-end
+solution feasible. Network-enabled services with diverse purposes and
+internal infrastructures have become increasingly interoperable thanks
+to the adoption of self-documenting web \glspl{API}. The increasing
+sophistication of web browsers has allowed for an explosion of rich
+client-side software experiences, enabling full-featured and user
+interfaces which are platform-independent and easily updated. A number
+of technologies such as distributed version control, demand-scaling
+cloud hosting services, and real-time full-duplex network data
+streaming have emerged as powerful tools for rapidly building robust
+and flexible web applications with unprecedented capabilities. The
 availability of inexpensive sensor and network hardware has begun to
-spur the growth of the emerging \gls{IoT}, a vision of the
-near future in which ubiquitous computing devices collect data,
-communicate with each other, and interact with their environments.
-Together these advancements provide a rich software ecosystem for
-implementing a next-generation \gls{LIMS} for performing complex
-experiments, curating detailed data sets, and generating publication
-units with end-to-end reproducibility.
+spur the growth of the emerging \gls{IoT}, a vision of the near future
+in which ubiquitous computing devices collect data, communicate with
+each other, and interact with their environments.  Together these
+advancements provide a rich software ecosystem for implementing a
+next-generation \gls{LIMS} for performing complex experiments,
+curating detailed data sets, and generating publication units with
+end-to-end reproducibility.
 
 This thesis describes the design and implementation of a suite of
-software tools for data acquisition and provenance
-tracking with the goal of leveraging computer automation to create a
-scientific dissemination format with rich facilities for
-comparing results, identifying new directions of research, and fostering
-collaboration than traditional print publications. The design of the
-described software tool embraces modern web technologies, separating
-functional units into independent networked services which communicate
-by discoverable web \glspl{API}. This architecture enables investigators to
-interact with each other's research remotely and to independently
-create reusable services of their own. The core components of the system are
-modular and loosely coupled, and users are encouraged to modify,
-create, and share software components to meet the unique needs of
-their research. By designing a modular architecture which anticipates rapidly
-changing requirements and enables users to take an active role in
-software maintenance, the platform is intended to grow with its user
-base and enjoy broader usefulness and greater longevity than existing
-free and commercial lab informatics packages.
-The framework provides high-level capabilities for
-remotely controlling lab equipment and routing captured sensor data,
-with a vision of connecting research labs to the nascent \gls{IoT}. To
-demonstrate and explore the system's capabilities, a
-embedded system was developed for performing customizable
-electrochemical experiments, which includes a multi-channel arbitrary
-waveform generator. The system's architecture is described in detail
-along with an overview of the developers' implementation
-choices. Throughout the exposition, the design and integration of
-multiple custom electrochemical instruments serve to demonstrate how
-users might add and modify software components to meet the needs of
-their own research.
+software tools for data acquisition and provenance tracking with the
+goal of leveraging computer automation to create a scientific
+dissemination format with rich facilities for comparing results,
+identifying new directions of research, and fostering collaboration
+than traditional print publications. The design of the described
+software tool embraces modern web technologies, separating functional
+units into independent networked services which communicate by
+discoverable web \glspl{API}. This architecture enables investigators
+to interact with each other's research remotely and to independently
+create reusable services of their own. The core components of the
+system are modular and loosely coupled, and users are encouraged to
+modify, create, and share software components to meet the unique needs
+of their research. By designing a modular architecture which
+anticipates rapidly changing requirements and enables users to take an
+active role in software maintenance, the platform is intended to grow
+with its user base and enjoy broader usefulness and greater longevity
+than existing free and commercial lab informatics packages.  The
+framework provides high-level capabilities for remotely controlling
+lab equipment and routing captured sensor data, with a vision of
+connecting research labs to the nascent \gls{IoT}. To demonstrate and
+explore the system's capabilities, a embedded system was developed for
+performing customizable electrochemical experiments, which includes a
+multi-channel arbitrary waveform generator. The system's architecture
+is described in detail along with an overview of the developers'
+implementation choices. Throughout the exposition, the design and
+integration of multiple custom electrochemical instruments serve to
+demonstrate how users might add and modify software components to meet
+the needs of their own research.
 
 \end{document}
 
