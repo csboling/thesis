@@ -74,9 +74,8 @@ networking and communications libraries available in the language. An
 important exception is found in some portions of the database access
 layer, which use NodeJS \cite{NodeJS} libraries to present a simple
 and effective API. The user-facing web application structure uses all
-the major third party components of the popular MEAN stack \cite{MEAN}
-(MongoDB, ExpressJS, AngularJS, and NodeJS), but interacts with
-several Python microservices to add hardware
+the major third party components of the popular \gls{MEAN} stack, but
+interacts with several Python microservices to add hardware
 connectivity.
 
 Additionally, the eGor team has developed a model
@@ -211,7 +210,7 @@ as in figure \ref{fig:DynamicLoading}.
   \item{
       The service-hoster downloads the module, possibly from an
       internal server or from a publicly hosted location such as
-      Github \cite{Github}, and executes necessary startup
+      GitHub \cite{GitHub}, and executes necessary startup
       routines. If the service-hoster determines that the service is
       already loaded, it instead checks if an updated version exists
       and provides the client with the option to download and use the
@@ -329,7 +328,7 @@ in the form of the Autobahn protocol libraries and a request router
 called crossbar.io \cite{CrossbarIO}. The authors of these tools claim
 that their protocol simultaneously addresses many of the use cases of
 existing protocols for machine-to-machine communication such as
-\gls{AMQP} and socket.io \cite{socket.io}. The protocol is built on
+\gls{AMQP} and socket.io \cite{socketio}. The protocol is built on
 top of WebSockets, which uses a TCP connection to achieve reliable
 full-duplex streaming and is now supported by all major web browsers
 and a number of web frameworks in several programming languages. One

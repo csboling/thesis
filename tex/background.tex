@@ -48,7 +48,7 @@ possible, and especially for batteries of tests involving many sensors
 operating in tandem it is necessary to employ computer control to
 achieve uniform results.
 
-This experimental scenario, depicted schematically in figure
+This experimental scenario, depicted schematically in Figure
 \ref{fig:EchemSetup},
 will serve as a running example to demonstrate the
 capabilities and requirements of the software tool described by this
@@ -238,6 +238,47 @@ experiment analysis and design must carefully conform to the latest
 security best practices and maintain careful access controls while
 allowing for collaboration.
 
+\begin{table}
+  \begin{tabular}{l | c c c c c}
+    \textbf{Software Type}
+  & \textbf{Process specification}
+  & \textbf{Analysis and documentation}
+  & \textbf{Data management}
+  & \textbf{Collaboration}
+  & \textbf{Hardware control} \\
+  \hline
+    \gls{ELN}
+  & \checkmark
+  & \checkmark
+  &
+  & \checkmark
+  &             \\
+    \gls{WMS}
+  & \checkmark
+  &
+  & \checkmark
+  & \checkmark
+  &             \\
+    \gls{LIMS}
+  & \checkmark
+  &
+  & \checkmark
+  & \checkmark
+  &             \\
+    Model-based design
+  & \checkmark
+  &
+  & \checkmark
+  &
+  & \checkmark
+  \end{tabular}
+  \caption[Comparison of lab informatics software]{
+    A comparison of the features typical of each major category of
+    scientific informatics software. The toolkit described in this
+    thesis intends to provide all five of the listed capabilities.
+  }
+\end{table}
+
 \section{Review of existing experiment management \mbox{software}}
 
 The complex needs of modern research have created a large specialized
@@ -269,7 +310,8 @@ health sectors.
 \begin{figure}
   \includegraphics[width=\textwidth]{ipython}
   \caption{
-    An electronic lab notebook page in IPython/Jupyter v4.1.0
+    Screenshot of an electronic lab notebook page in
+    IPython/Jupyter v4.1.0
     \cite{IPython} integrating documentation, code, inline math,
     and figures.
     \label{fig:Ipython}
@@ -288,14 +330,14 @@ and MATLAB Notebook \cite{MATLAB}.
 \subsection{Workflow design tools}
 Defining, composing, and documenting complex procedures is a core
 organizational need of many research groups. A number of so-called
-\glspl{workflowMgmt} have emerged to help manage task schedules and
+\glspl{WMSg} have emerged to help manage task schedules and
 dependencies in domains such as manufacturing
 \cite{Allweyer:2010:BPM:1841147}, high performance computing
 \cite{VisTrails}, and business management
 \cite{cardoso2004workflow}. Workflow editors provide users with a
 means of constructing executable tasks by describing how
 data moves through them, typically by visually manipulating a directed
-graph of processes as in figure \ref{fig:TavernaWorkflow}. In some
+graph of processes as in Figure \ref{fig:TavernaWorkflow}. In some
 cases workflows may serve purely as
 documentation, while workflow tools for \textit{\gls{insilico}} science
 are often executable and may be bundled with data to provide direct
@@ -318,8 +360,8 @@ complicated laboratory procedures.
 \begin{figure}
   \includegraphics[width=\textwidth]{taverna-workflow}
   \caption{
-    Editing a protein sequence analysis workflow
-    (retrieved from \cite{ExampleWorkflow}) in
+    Screenshot of a protein sequence analysis workflow
+    \cite{ExampleWorkflow} being edited in
     Apache Taverna v2.5 \cite{Taverna}, an open-source workflow
     management tool.
     \label{fig:TavernaWorkflow}
@@ -363,20 +405,20 @@ of the model is also an impediment to adoption by end users as well as
 implementation.
 
 \subsection{\Gls{LIMS}}
-A \gls{LIMS} is a tool for tracking the operations and assets
-of a laboratory. Commercial tools by this name provide a wide range
-of features targeted toward different aspects of an enterprise-level
+A \gls{LIMS} is a tool for tracking the operations and assets of a
+laboratory. Commercial tools by this name provide a wide range of
+features targeted toward different aspects of an enterprise-level
 industrial lab such as letting researchers monitor their ongoing
 experiments, logging samples and data sets, and notifying relevant
 personnel when maintenance tasks like restocking need their
 attention. This field is now occupied by a staggering number of
 application vendors and products with a broad range of
 specializations, feature sets, maturity levels, and price tags
-\cite{LIMSWikiList}. These packages range from glorified
-wiki/spreadsheet tools to specialized systems for interacting with
-specific types of chemical analysis equipment.
-Some \gls{LIMS} packages provide a \gls{workflowMgmt}
-and many of them contain built-in \gls{ELN}s.
+\cite{LIMSWikiList}. These packages range from general-purpose systems
+built around a wiki or spreadsheet tool to specialized systems for
+interacting with specific types of chemical analysis equipment.  Some
+\gls{LIMS} packages provide a \gls{WMS} and many of them contain
+built-in \gls{ELN}s.
 
 The primary players in this application domain target the needs of
 labs in the healthcare, forensics, and pharmaceutical sectors and are
@@ -414,7 +456,8 @@ To extend automation of scientific processes beyond the purely
 computational domain, several vendors offer tools for coordinating
 simultaneous operation of actuators and data acquisition modules.
 Likely the most visible software package providing this functionality
-is National Instruments LabVIEW \cite{ELLIOTT2007}
+is National Instruments LabVIEW \cite{LabVIEW}, as well as similar
+tools for model-based design such as Simulink \cite{Simulink}
 LabVIEW's G visual programming language allows users to connect
 devices, signal processing blocks, and graphical interface elements,
 ultimately building a custom front panel and controller for a
@@ -447,7 +490,7 @@ framework.
 
 
 
-\section{Rich publication data models}
+\section{Rich publications}
 A core component of a software system for experiment management is its
 model for representing research \glspl{artifact}. Knowledge
 engineering and data archiving researchers have proposed several
