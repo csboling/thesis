@@ -75,7 +75,7 @@ fulfill some of these requirements.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{echem-setup}
-  \caption{
+  \caption[Electrochemical sensor characterization]{
     Schematic of an example experimental apparatus for
     characterizing an array of electrochemical gas sensors.
     Inset: some commonly used stimulus waveforms for interrogating
@@ -238,47 +238,6 @@ experiment analysis and design must carefully conform to the latest
 security best practices and maintain careful access controls while
 allowing for collaboration.
 
-\begin{table}
-  \begin{tabular}{l | c c c c c}
-    \textbf{Software Type}
-  & \textbf{Process specification}
-  & \textbf{Analysis and documentation}
-  & \textbf{Data management}
-  & \textbf{Collaboration}
-  & \textbf{Hardware control} \\
-  \hline
-    \gls{ELN}
-  & \checkmark
-  & \checkmark
-  &
-  & \checkmark
-  &             \\
-    \gls{WMS}
-  & \checkmark
-  &
-  & \checkmark
-  & \checkmark
-  &             \\
-    \gls{LIMS}
-  & \checkmark
-  &
-  & \checkmark
-  & \checkmark
-  &             \\
-    Model-based design
-  & \checkmark
-  &
-  & \checkmark
-  &
-  & \checkmark
-  \end{tabular}
-  \caption[Comparison of lab informatics software]{
-    A comparison of the features typical of each major category of
-    scientific informatics software. The toolkit described in this
-    thesis intends to provide all five of the listed capabilities.
-  }
-\end{table}
-
 \section{Review of existing experiment management \mbox{software}}
 
 The complex needs of modern research have created a large specialized
@@ -290,6 +249,54 @@ difficult to compare their feature sets precisely, and many
 packages are defunct or poorly documented. Below we attempt to provide a
 broad overview of the major classes of software most aligned with our
 goals, giving a few examples of prominent products in each category.
+A comparison of these categories of tools and the functions they
+provide is given in Table \ref{tab:informatics}.
+
+\begin{table}
+  \begin{tabular}{l|c|c|c|c}
+  & \gls{ELNg}
+  & \gls{WMSg}
+  & \gls{LIMS}
+  & Model-based design \\
+    \hline
+    \textbf{Process specification}
+  & \checkmark
+  & \checkmark
+  & \checkmark
+  & \checkmark \\
+    \hline
+    \textbf{Analysis and documentation}
+  & \checkmark
+  &
+  &
+  &  \\
+    \hline
+    \textbf{Data management}
+  &
+  & \checkmark
+  & \checkmark
+  & \checkmark \\
+    \hline
+    \textbf{Collaboration}
+  & \checkmark
+  & \checkmark
+  & \checkmark
+  & \\
+    \hline
+    \textbf{Hardware control}
+  &
+  &
+  &
+  & \checkmark
+  \end{tabular}
+  \caption[Comparison of lab informatics software]{
+    A comparison of the features typical of each major category of
+    scientific informatics software. The toolkit described in this
+    thesis intends to provide all five of the listed capabilities.
+    \label{tab:informatics}.
+  }
+\end{table}
+
 
 \subsection{Electronic lab notebooks}
 An \gls{ELN} is a software tool for helping
@@ -309,7 +316,7 @@ health sectors.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{ipython}
-  \caption{
+  \caption[Editing an IPython notebook]{
     Screenshot of an electronic lab notebook page in
     IPython/Jupyter v4.1.0
     \cite{IPython} integrating documentation, code, inline math,
@@ -359,7 +366,7 @@ complicated laboratory procedures.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{taverna-workflow}
-  \caption{
+  \caption[Editing a Taverna workflow]{
     Screenshot of a protein sequence analysis workflow
     \cite{ExampleWorkflow} being edited in
     Apache Taverna v2.5 \cite{Taverna}, an open-source workflow
@@ -490,9 +497,17 @@ framework.
 
 
 
-\section{Rich publications}
-A core component of a software system for experiment management is its
-model for representing research \glspl{artifact}. Knowledge
+\section{Enhancing publication value}
+To help manage the complexities of modern research and promote
+reproducible science, some commentators have identified a need for
+more richly structured publication units than currently exist
+\cite{bechhofer2010research}. Simple examples of rich publications
+include PDFs containing hyperlinks to external papers or other
+scientific resources, and these have already begun to proliferate now
+that most research is exchanged digitally. Especially in scientific
+computing it is also desirable for publication to be executable,
+unifying code and documentation and allowing for complete
+reproducibility of a unit of research. Knowledge
 engineering and data archiving researchers have proposed several
 approaches for representing the broad space of research-relevant
 information in a machine-readable form, and some of these models are
@@ -502,7 +517,12 @@ recognized in this section.
 Academic work on structured representations of research artifacts,
 their relationships, and their provenance has largely built on
 semantic web technologies such as the so-called linked data network
-\cite{LinkedData}. Linked data are scientific resources on the
+\cite{LinkedData}. The semantic web refers to a body
+of Internet resources which are connected to one another by hyperlinks
+which stand for specific kinds of relationships, such as
+\href{https://www.w3.org/TR/2004/REC-rdf-schema-20040210/#ch_subclassof}{subclassOf}
+or \href{https://www.w3.org/TR/2013/REC-prov-dm-20130430/#dfn-wasderivedfrom}{wasDerivedFrom}.
+Similarly, linked data are scientific resources on the
 web which include hyperlinks to semantically related external pages. In
 particular, this provides a mechanism for published data sets to
 record their provenance by explicitly stating a chain of relationships
@@ -584,6 +604,16 @@ cloud-based software framework that currently does not exist. The
 remainder of this thesis will describe the proposed design and
 prototype implementation of a suite of software tools which
 synthesizes and expands upon the programs described above.
+
+The following sections describe the design and implementation of eGor,
+a lab informatics software package intended to cover most of the use
+cases of the tools reviewed in this section and more. eGor comprises
+several programs which in practice typically run on several different
+machines and help to manage the complete process of developing a
+scientific experiment. This custom tool intends to provide all of the major
+functions listed in Table \ref{tab:informatics} and improve both user
+productivity and research reproducibility by synthesizing these
+capabilities into a single software tool.
 
 \end{document}
 

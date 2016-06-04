@@ -61,13 +61,13 @@ facilitated by users. We believe that tremendous gains can be made for
 research organization, accuracy, and reproducibility by coordinating
 the interactions between these components with a carefully designed
 software framework. A schematic diagram of some of these interacting
-components is depicted in figure \ref{fig:DAQFlow}.
+components is depicted in Figure \ref{fig:DAQFlow}.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{daq-flow}
-  \caption{
+  \caption[Research-relevant artifacts]{
     Representation of some of the digital resources found in
-    typical scientific workflows and their relationships.Raw data sets
+    typical scientific workflows and their relationships. Raw data sets
     captured from an experimental run are often insufficient to
     reconstruct meaningful plots or perform detailed analysis, and
     researchers must rely on undocumented, hidden information sources
@@ -98,7 +98,7 @@ devices over non-networked connections such as USB.
 \subsection{Monolithic approach}
 \begin{figure}
   \includegraphics[width=\textwidth]{monolithic}
-  \caption{
+  \caption[Monolithic web architecture]{
     A traditional ``monolithic'' web application architecture where
     one server process manipulates a database on behalf of many clients.
     \label{fig:Monolithic}
@@ -107,7 +107,7 @@ devices over non-networked connections such as USB.
 
 A traditional architecture for web application software involves a
 single server executable serving presentation-layer applications to
-clients and making database accesses on their behalf, as in figure
+clients and making database accesses on their behalf, as in Figure
 \ref{fig:Monolithic}. In our case, the server would also mediate
 access to lab equipment, providing users with indirect and high-level
 access to these resources in much the same way as it abstracts over
@@ -159,7 +159,7 @@ scale better as performance demands on the system increase
 
 \begin{figure}
   \includegraphics[width=\textwidth]{microservices}
-  \caption{
+  \caption[Microservice-based web architecture]{
     High-level interconnection between the critical microservices
     composing our final design.
     \label{fig:Microservices}
@@ -167,7 +167,7 @@ scale better as performance demands on the system increase
 \end{figure}
 
 A schematic depicting the connections between some of our core
-microservices can be found in figure \ref{fig:Microservices}.
+microservices can be found in Figure \ref{fig:Microservices}.
 In our approach, no microservice is truly ``central'' -- services may
 communicate with any other service provided they know its URI and
 present an authorized access token.
@@ -222,7 +222,7 @@ functionality as an \gls{API} available at an appropriate endpoint,
 allowing the rest of the system to behave as if the instruments
 themselves were ordinary microservices.
 
-\subsection{Enumeration}
+\subsection{Device enumeration}
 One of the instrument manager's chief responsibilities is to determine
 which devices are presently connected to the PC hosting the
 service. The process of establishing a connection with a piece of
@@ -378,7 +378,7 @@ user's workspace.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{egor-usage}
-  \caption{
+  \caption[A typical eGor workflow]{
     A typical sequence of user operations for interacting with eGor to
     design, schedule, execute, and analyze an experiment.
     \label{fig:EgorUsage}
@@ -386,7 +386,7 @@ user's workspace.
 \end{figure}
 
 A usage example of eGor's core functionality from a user's point of
-view is depicted in figure \ref{fig:EgorUsage}, with the following
+view is depicted in Figure \ref{fig:EgorUsage}, with the following
 major phases indicated by numerals in the figure.
 \begin{enumerate}
   \item{

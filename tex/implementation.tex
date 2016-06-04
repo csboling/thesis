@@ -53,7 +53,7 @@ are, from top to bottom
 
 \begin{figure}
   \includegraphics[width=\textwidth]{impl-overview}
-  \caption{
+  \caption[High-level structure of the eGor system]{
     A high-level architectural view of the implemented eGor system,
     divided across three different machines where primary activity
     takes place: a user's machine, connected to an eGor server via a
@@ -182,13 +182,13 @@ history of the code base on a private computer, with or without
 network connectivity, sharing or publishing changes in a peer-to-peer
 fashion if and when they choose.
 
-An example of the dynamic loading process is illustrated in figure
+An example of the dynamic loading process is illustrated in Figure
 \ref{fig:DynamicLoading}. The following sequence of steps describes
 how, for instance, the device management system might \glspl{lazyLoad} a
 device driver, waiting to download and install the appropriate code
 until the device has been physically connected to a given host machine
 for the first time. Here the phases are listed with the same numbering
-as in figure \ref{fig:DynamicLoading}.
+as in Figure \ref{fig:DynamicLoading}.
 
 \begin{enumerate}
   \item{
@@ -240,7 +240,7 @@ interrogation platform.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{dynamic-loading}
-  \caption{
+  \caption[Dynamic loading of microservices]{
     Phases of the dynamic loading process for downloading and
     installing a user-defined device driver at runtime. The
     service-hosting service and the services it hosts (green)
