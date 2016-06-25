@@ -1,21 +1,19 @@
 SHELL = sh
 TOPLEVEL = thesis
-TEXFILES = $(shell find . -name '*.tex')
-BIBFILES = $(shell find . -name '*.bib')
+# TEXFILES = $(shell find . -name '*.tex')
 
 all: $(TOPLEVEL).pdf
 
-$(TOPLEVEL).aux: $(TEXFILES)
+$(TOPLEVEL).aux: thesis.tex
 	pdflatex $(TOPLEVEL).tex
 
 $(TOPLEVEL).bbl: references.bib $(TOPLEVEL).aux
 	makeglossaries $(TOPLEVEL)
-	biber $(TOPLEVEL)
+	-biber $(TOPLEVEL)
 
-thesis.pdf: $(TOPLEVEL).bbl
+$(TOPLEVEL).pdf: $(TOPLEVEL).bbl
 	pdflatex $(TOPLEVEL).tex
-	pdflatex $(TOPLEVEL).tex
-	biber $(TOPLEVEL)
+	-biber $(TOPLEVEL)
 	pdflatex $(TOPLEVEL).tex
 
 clean:
@@ -24,6 +22,7 @@ clean:
 
 	rm -f $(TOPLEVEL).ist
 	rm -f $(TOPLEVEL).toc
+	rm -f $(TOPLEVEL).lof
 
 	rm -f $(TOPLEVEL).acn
 	rm -f $(TOPLEVEL).acr
