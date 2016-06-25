@@ -9,11 +9,11 @@ $(TOPLEVEL).aux: thesis.tex
 
 $(TOPLEVEL).bbl: references.bib $(TOPLEVEL).aux
 	makeglossaries $(TOPLEVEL)
-	-biber $(TOPLEVEL)
+	biber $(TOPLEVEL)
 
 $(TOPLEVEL).pdf: $(TOPLEVEL).bbl
 	pdflatex $(TOPLEVEL).tex
-	-biber $(TOPLEVEL)
+	biber $(TOPLEVEL)
 	pdflatex $(TOPLEVEL).tex
 
 clean:
