@@ -1,4 +1,6 @@
-\documentclass{msumastersthesis}
+% \documentclass{msumastersthesis}
+\documentclass[MS]{msu-thesis}
+\usepackage{mathptmx}
 
 \usepackage[backend=biber]{biblatex}
 \usepackage{subfiles}
@@ -18,9 +20,9 @@
 \usepackage[inline]{enumitem}
 \usepackage{pictexwd,dcpic}
 \usepackage{hyperref}
-\usepackage[toc,page]{appendix}
+% \usepackage[toc,page]{appendix}
 \usepackage[toc,acronym]{glossaries}
-\usepackage[nottoc,notlot,notlof]{tocbibind}
+% \usepackage[nottoc,notlot,notlof]{tocbibind}
 
 \graphicspath{{images/}}
 \DeclareGraphicsExtensions{.png,.pdf}
@@ -30,7 +32,9 @@
   automatic collection and comparative analysis of sensor
   characterization data}
 \author{Charles Samuel Boling}
-\unit{Electrical and Computer Engineering --- Master of Science}
+\fieldofstudy{Electrical Engineering}
+\date{2016}
+%\unit{Electrical Engineering --- Master of Science}
 
 \addbibresource{references.bib}
 \subfile{glossary}
@@ -42,28 +46,33 @@
 \frontmatter
 \maketitlepage
 \subfile{tex/abstract}
-\TOC
-\listoffigures
+\clearpage
+
 \subfile{tex/acknowledgments}
-% \subfile{tex/source}
+\tableofcontents*
+\listoffigures
+% \TOC
+% \LOF
 
 \mainmatter
-\begin{doublespace}
+% \begin{doublespace}
 \subfile{tex/motivation}
 \subfile{tex/background}
 \subfile{tex/architecture}
 \subfile{tex/implementation}
 \subfile{tex/summary}
-\end{doublespace}
+% \end{doublespace}
 
-
-
-% \appendix
-% \begin{appendices}
-% \end{appendices}
 
 \backmatter
-\printglossaries
+
+\begin{appendices}
+\printglossary[type=\acronymtype]
+\printglossary[type=main]
+\end{appendices}
+
+\makebibliographypage
+\SingleSpacing
 \printbibliography[heading=bibintoc]
 
 \end{document}

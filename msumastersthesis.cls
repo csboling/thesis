@@ -356,56 +356,56 @@
 {\newpage}
 
 % Single space quotation environments.
-\renewenvironment{quotation}
-	{\begin{singlespace}\list{}{\listparindent 1.5em%
-	\itemindent    \listparindent
-	\rightmargin   \leftmargin
-	\parsep  \z@ \@plus\p@}%
-	\item\relax}
-{\endlist\end{singlespace}}
-\renewenvironment{quote}
-	{\begin{singlespace}\list{}{\rightmargin\leftmargin}%
-	\item\relax}
-{\endlist\end{singlespace}}
+% \renewenvironment{quotation}
+% 	{\begin{singlespace}\list{}{\listparindent 1.5em%
+% 	\itemindent    \listparindent
+% 	\rightmargin   \leftmargin
+% 	\parsep  \z@ \@plus\p@}%
+% 	\item\relax}
+% {\endlist\end{singlespace}}
+% \renewenvironment{quote}
+% 	{\begin{singlespace}\list{}{\rightmargin\leftmargin}%
+% 	\item\relax}
+% {\endlist\end{singlespace}}
 
 % Redefine the \appendix command
 % to be used for a single appendix.
-\renewcommand\appendix{\par
-	\clearpage\thispagestyle{plain}\vspace*{\fill}
-	\begin{center}
-	\Huge{\textbf{APPENDIX}}
-	\vspace{\baselineskip}%
-	\end{center}
-	\tocentry{APPENDIX}
-	\vfill
-	\newpage
-	\setcounter{chapter}{0}%
- 	\setcounter{section}{0}%
-	\renewcommand{\chaptername}{\appendixname}
- 	\gdef\chaptername{\appendixname}%
- 	\gdef\thechapter{\c@chapter\alpha}
-	%\gdef\thechapter{\@Alph\c@chapter}
-	\clearpage
-}
-
-% Define the command \appendices to be used
-% for 2 or more appendices.
-% \newcommand\appendices{\par
-% 	\renewcommand{\covername}{Appendices}
+% \renewcommand\appendix{\par
 % 	\clearpage\thispagestyle{plain}\vspace*{\fill}
 % 	\begin{center}
-% 	\Huge{\textbf{APPENDICES}}
+% 	\Huge{\textbf{APPENDIX}}
 % 	\vspace{\baselineskip}%
 % 	\end{center}
-% 	\addcontentsline{toc}{chapter}{APPENDICES}%
+% 	\tocentry{APPENDIX}
 % 	\vfill
 % 	\newpage
 % 	\setcounter{chapter}{0}%
 %  	\setcounter{section}{0}%
+% 	\renewcommand{\chaptername}{\appendixname}
 %  	\gdef\chaptername{\appendixname}%
-%  	\gdef\thechapter{\@Alph\c@chapter}
-%   	\clearpage
+%  	\gdef\thechapter{\c@chapter\alpha}
+% 	%\gdef\thechapter{\@Alph\c@chapter}
+% 	\clearpage
 % }
+
+% Define the command \appendices to be used
+% for 2 or more appendices.
+\newcommand\theappendices{\par
+	\renewcommand{\covername}{Appendices}
+	\clearpage\thispagestyle{plain}\vspace*{\fill}
+	\begin{center}
+	\Huge{\textbf{APPENDICES}}
+	\vspace{\baselineskip}%
+	\end{center}
+	\addcontentsline{toc}{chapter}{APPENDICES}%
+	\vfill
+	\newpage
+	\setcounter{chapter}{0}%
+ 	\setcounter{section}{0}%
+ 	\gdef\chaptername{\appendixname}%
+ 	\gdef\thechapter{\@Alph\c@chapter}
+  	\clearpage
+}
 
 % Single space the bibliography.
 % To eliminate cover page number in ToC entry and replace with the actual first Bibliography page number, delete the eighth line down and remove the "%" signs in front of five lines further down.
