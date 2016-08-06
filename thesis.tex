@@ -24,6 +24,8 @@
 \usepackage[toc,acronym]{glossaries}
 % \usepackage[nottoc,notlot,notlof]{tocbibind}
 
+\setlength\bibitemsep{\baselineskip}
+
 \makeatletter
 \let\x@caption\caption % original \caption
 \def\x@@caption[#1]#2{\x@caption[{#1}]{\textbf{#1.} #2}} % with optional arg
@@ -57,6 +59,8 @@
 
 \subfile{tex/acknowledgments}
 \tableofcontents*
+\clearpage
+\listoftables
 \clearpage
 \listoffigures
 % \TOC
