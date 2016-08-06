@@ -24,6 +24,13 @@
 \usepackage[toc,acronym]{glossaries}
 % \usepackage[nottoc,notlot,notlof]{tocbibind}
 
+\makeatletter
+\let\x@caption\caption % original \caption
+\def\x@@caption[#1]#2{\x@caption[{#1}]{\textbf{#1.} #2}} % with optional arg
+\def\x@@@caption#1{\x@caption[{#1}]{#1}} % without optional arg
+\def\caption{\@ifnextchar[\x@@caption\x@@@caption} % new \caption
+\makeatother
+
 \graphicspath{{images/}}
 \DeclareGraphicsExtensions{.png,.pdf}
 \makeglossaries
@@ -50,6 +57,7 @@
 
 \subfile{tex/acknowledgments}
 \tableofcontents*
+\clearpage
 \listoffigures
 % \TOC
 % \LOF
@@ -67,13 +75,13 @@
 \backmatter
 
 \begin{appendices}
-\printglossary[type=\acronymtype]
-\printglossary[type=main]
+\printglossary[type=\acronymtype,title={Appendix A: Acronyms}]
+\printglossary[type=main,title={Appendix B: Glossary}]
 \end{appendices}
 
 \makebibliographypage
 \SingleSpacing
-\printbibliography[heading=bibintoc]
+\printbibliography
 
 \end{document}
 
