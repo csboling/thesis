@@ -2,6 +2,7 @@
 \documentclass[MS]{msu-thesis}
 \usepackage{mathptmx}
 
+
 \usepackage[backend=biber]{biblatex}
 \usepackage{subfiles}
 \usepackage{graphicx}
@@ -19,10 +20,17 @@
 \usepackage{enumerate}
 \usepackage[inline]{enumitem}
 \usepackage{pictexwd,dcpic}
+
+\usepackage{url}
 \usepackage{hyperref}
+\hypersetup{breaklinks=true}
+\Urlmuskip=0mu plus 1mu
+
 % \usepackage[toc,page]{appendix}
 \usepackage[toc,acronym]{glossaries}
 % \usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{caption}
+\captionsetup{width=0.8\textwidth}
 
 \setlength\bibitemsep{\baselineskip}
 
@@ -85,6 +93,7 @@
 
 \makebibliographypage
 \SingleSpacing
+\raggedright
 \printbibliography
 
 \end{document}

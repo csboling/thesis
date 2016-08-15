@@ -1,0 +1,95 @@
+* TODO Thesis edits [18/22]
+  - [X] Title Page: in the section ‘Submitted to Michigan State
+    University…’ the word ‘to’ should be on the top line after the
+    word ‘Submitted’. Please reference the formatting guide to
+    clarify:
+    https://grad.msu.edu/sites/default/files/content/etd/Sample%20Thesis%20Title%20Page.pdf
+  - [X] Table of Contents: APPENDICES section: The individual appendices
+    need to be labeled as appendices here and in the document. ie:
+    APPENDIX A: ACRONYMS and APPENDIX B: GLOSSARY
+  - [X] Table of Contents: There should only be one entry for the
+    bibliography, the page listed in the Table of Contents for this
+    page should be the bibliography cover page. Please remove the
+    second bibliography entry.
+  - [X] Table of Contents (List of Figures): the List of Figures should
+    begin on a new page. This new page will be the page number listed
+    in the Table of Contents for List of Figures. The heading is to be
+    centered 1 inch from the top of the page.
+  - [X] Page 7: Figure 2.1: the figure caption listed here does not match
+    what is listed in the List of Figures. The Figure captions must
+    match exactly in both locations with regards to wording,
+    capitalization and punctuation. Here, the wording does not match.
+  - [X] Page 12: You have a table listed on this page but no List of
+    Tables. You will need to create a List of Tables page and list the
+    tables in the document. You will need to add a heading in the
+    Table of Contents before the LIST OF FIGURES for LIST OF
+    TABLES. LIST OF TABLES would be the first entry in the TABLE OF
+    CONTENTS after the heading TABLE OF CONTENTS. The actual LIST OF
+    TABLES would appear in the preliminary pages BEFORE the LIST OF
+    FIGURES.
+  - [X] Page 13: Figure 2.2: the figure caption listed here does not match
+    what is listed in the List of Figures. The Figure captions must
+    match exactly in both locations with regards to wording,
+    capitalization and punctuation. Here, the wording does not match.
+  - [X] Page 14: Figure 2.3 the figure caption listed here does not match
+    what is listed in the List of Figures. The Figure captions must
+    match exactly in both locations with regards to wording,
+    capitalization and punctuation. Here, the wording does not match.
+  - [X] ENTIRE DOCUMENT: ALL FIGURES AND TABLES : ALL FIGURE AND TABLE
+    NAMES AND CAPTIONS MUST MATCH EXACTLY IN THE DOCUMENT AND IN THE
+    LIST OF FIGURES/LIST OF TABLES WITH REGARDS TO WORDING,
+    CAPITALIZATION AND PUNCTUATION. REVIEW YOUR ENTIRE DOCUMENT AND
+    MAKE CORRECTIONS AS NEEDED. NO FURTHER SPECIFIC EXAMPLES WILL BE
+    GIVEN REGARDING THIS ISSUE.
+  - [X] Page 15: the heading ‘2.3.3 LIMS’ is different from what is listed
+    in the Table of Contents, it appears you did not spell out the
+    heading on this page. You need to spell out the whole heading as
+    it appears in the Table of Contents.
+  - [X] Page 58 Appendices Cover Page: the word ‘APPENDICES’ should be
+    centered top to bottom and left to right on the page. It is
+    currently not centered from top to bottom.
+  - [ ] Page 59 ACRONYMS: this information is in an appendix. There needs
+    to be an appendix name and title on this page.
+  - [ ] Page 61 GLOSSARY: this information is in an appendix. There needs
+    to be an appendix name and title on this page.
+  - [X] Page 65 Bibliography Cover Page: the word ‘BIBLIOGRAPHY’ should be
+    centered top to bottom and left to right on the page. It is
+    currently not centered from top to bottom.
+  - [X] Pages 66-71: Bibliography: there should be one double space
+    between each entry, currently they all appear to be single spaced
+    between entries. See the sample BIBLIOGRAPHY page at:
+    https://grad.msu.edu/sites/default/files/content/etd/Sample%20Bibliography%20Page.pdf
+    for examples of correct spacing.
+  - [ ] Please submit the signed Approval Form. This form is taken as
+    evidence that your document has been examined and approved by the
+    major professor. The approval form, with the required signatures
+    can be submitted to the Graduate School by email to
+    msuetds.approval@grd.msu.edu, by fax at 517.353.3355, or a hard
+    copy delivered to the Graduate School, 466 W. Circle Drive, 2nd
+    Floor, Chittenden Hall. The approval form may be found at:
+    https://grad.msu.edu/sites/default/files/content/etd/Approval%20Form%20May%202016.pdf
+  - [X] Please submit the IRB Approval letter if human subjects were used
+    or the IACUC letter if animal subjects were used. This may be
+    submitted to the Graduate School by email to
+    msuetds.approval@grd.msu.edu, by fax at 517.353.3355, or a hard
+    copy delivered to the Graduate School, 466 W. Circle Drive, 2nd
+    Floor, Chittenden Hall.
+  - [X] Page 24: there must be a 1 inch margin all side of the
+    document. The figure caption for figure 3.1 goes beyond this 1
+    inch margin. Nothing besides the page number should go beyond the
+    in 1 inch margin.
+  - [ ] Page 67: Bibliography: there should be two double spaces
+    between the heading ‘BIBLIOGRAPHY’ and the first entry on this
+    page. It looks like the space is too small right now.
+  - [X] Page 67: there must be a 1 inch margin all side of the
+    document. Your entry for source 2 goes beyond this margin. Please
+    fix this so it meets the margin requirements.
+  - [X] Page 68: there must be a 1 inch margin on all sides of the
+    document. Your entries for source 14, 19, and 22 go beyond the 1
+    inch margin, these needs to be fixed so they don’t go beyond the 1
+    inch margin.
+  - [X] ENTIRE BIBLIOGRAPHY SECTION: ALL ENTRIES MUST MEET THE 1 INCH
+    MARGIN REQUIREMENTS. SEVERAL OF YOUR ENTRIES DO NOT MEET THE 1
+    INCH MARGIN REQUIREMENTS BECAUSE TEXT GOES INTO THE RIGHT
+    MARGIN. ALL PARTS OF THE DOCUMENT MUST MEET THE MARGIN
+    REQUIREMENTS.
