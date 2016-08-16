@@ -1,4 +1,4 @@
-* TODO Thesis edits [18/22]
+* TODO Thesis edits [21/22]
   - [X] Title Page: in the section ‘Submitted to Michigan State
     University…’ the word ‘to’ should be on the top line after the
     word ‘Submitted’. Please reference the formatting guide to
@@ -48,9 +48,9 @@
   - [X] Page 58 Appendices Cover Page: the word ‘APPENDICES’ should be
     centered top to bottom and left to right on the page. It is
     currently not centered from top to bottom.
-  - [ ] Page 59 ACRONYMS: this information is in an appendix. There needs
+  - [X] Page 59 ACRONYMS: this information is in an appendix. There needs
     to be an appendix name and title on this page.
-  - [ ] Page 61 GLOSSARY: this information is in an appendix. There needs
+  - [X] Page 61 GLOSSARY: this information is in an appendix. There needs
     to be an appendix name and title on this page.
   - [X] Page 65 Bibliography Cover Page: the word ‘BIBLIOGRAPHY’ should be
     centered top to bottom and left to right on the page. It is
@@ -78,7 +78,7 @@
     document. The figure caption for figure 3.1 goes beyond this 1
     inch margin. Nothing besides the page number should go beyond the
     in 1 inch margin.
-  - [ ] Page 67: Bibliography: there should be two double spaces
+  - [X] Page 67: Bibliography: there should be two double spaces
     between the heading ‘BIBLIOGRAPHY’ and the first entry on this
     page. It looks like the space is too small right now.
   - [X] Page 67: there must be a 1 inch margin all side of the
